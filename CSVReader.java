@@ -14,8 +14,8 @@ import java.util.Scanner;
 
 public class CSVReader {
 
-	String folderPath;
-	String outputFileName;
+	private String folderPath;
+	private String outputFileName;
 	final int COLUMNS = 11;					// The number of columns
 //	File dir = new File(folderPath);		//	The current file
 	boolean firstTimeHeader = true; 		//	Flag to check if the titles of columns in the csv file was written		
