@@ -4,6 +4,6 @@ public class MainEx0 {
 		String pathFolder = "C:\\Users\\Moshe\\Desktop\\data\\27.10\\Lenovo";
 		
 		CSVReader sammeryCSV = new CSVReader(pathFolder,"wifiStrength");
-		System.out.println("hi moshe");
+		System.out.println("hi Nissan");
 	}
 }
