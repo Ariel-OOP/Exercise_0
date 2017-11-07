@@ -160,8 +160,8 @@ public class CSVReader {
 
 			//fill matrix from list
 
-			strMatrix = new String[lineCounter][COLUMNS]; //Makes string matrix for wifi parameters
-			strMatrix = PointsOfOneMinute.toArray(new String[lineCounter][11]);
+//			strMatrix = new String[lineCounter][COLUMNS]; //Makes string matrix for wifi parameters
+//			strMatrix = PointsOfOneMinute.toArray(new String[lineCounter][11]);
 
 			//Sorting 10 best wifi signals
 			Collections.sort(PointsOfOneMinute, new Comparator<String[]>() {
@@ -173,6 +173,10 @@ public class CSVReader {
 					return rxl1.compareTo(rxl2);
 				}
 			});
+			
+			strMatrix = new String[lineCounter][COLUMNS]; //Makes string matrix for wifi parameters
+			strMatrix = PointsOfOneMinute.toArray(new String[lineCounter][11]);
+			
 			FileCreater();
 		}
 	}
