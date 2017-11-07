@@ -5,10 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
+//import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +16,7 @@ public class CSVReader {
 
 	private String folderPath;
 	private String outputFileName;
-	final int COLUMNS = 11;					// The number of columns
+	private final int COLUMNS = 11;					// The number of columns
 //	File dir = new File(folderPath);		//	The current file
 	boolean firstTimeHeader = true; 		//	Flag to check if the titles of columns in the csv file was written		
 	int lineCounter=0;						//	Number of strMatrix's lines

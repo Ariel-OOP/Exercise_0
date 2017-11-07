@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Ex0_3 {
-
+//
 	static String csvFilePath= "C:\\Users\\Moshe\\Desktop\\data\\wifiStrenght.csv";
 	static int choiceFilter; //Which filter
 
