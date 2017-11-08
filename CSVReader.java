@@ -17,11 +17,11 @@ public class CSVReader {
 	private String folderPath;
 	private String outputFileName;
 	private final int COLUMNS = 11;			// The number of columns
-
-	boolean firstTimeHeader = true; 		//	Flag to check if the titles of columns in the csv file was written		
+	private boolean firstTimeHeader = true; //	Flag to check if the titles of columns in the csv file was written
+	
 	String[][] strMatrix; 					//	Matrix of parameters from txt file
-	String[][] headerMatrix;				//	Array of two lines of file's header 
-	List<String[]> PointsOfOneMinute = new ArrayList<String[]>();	//	List of all WIFI points in given time
+//	String[][] headerMatrix;				//	Array of two lines of file's header 
+//	List<String[]> PointsOfOneMinute = new ArrayList<String[]>();	//	List of all WIFI points in given time
 
 
 	/**
@@ -36,6 +36,7 @@ public class CSVReader {
 		//Delete old csv file if exists
 		File fileToDelete = new File(outputFileName+".csv");
 		fileToDelete.delete();
+		
 		//Read the folder
 		ReadFilesInFolder();		
 	}
@@ -72,15 +73,15 @@ public class CSVReader {
 	 * 
 	 * @param stdin
 	 */
-	public void ReadHeaderAndData(Scanner stdin){
+	private void ReadHeaderAndData(Scanner stdin){
 
-		headerMatrix = new String[2][COLUMNS];
+		String[][] headerMatrix = new String[2][COLUMNS];				//	Array of two lines of file's header 
+
 		boolean hasCorrectHeader = true;	//If the method success to read the header and title than /*return true, else return false.*/
 		Line header = null, title = null;
 		String line_Text;						//	
 
-		//Split each line of csv file by ',' and insert to array
-
+		//Check if there are the header and titles
 		if(stdin.hasNext())
 		{
 			line_Text = stdin.nextLine();
@@ -98,7 +99,7 @@ public class CSVReader {
 		else
 			hasCorrectHeader = false;
 
-		//check if in the title has all properties
+		//Check if in the header and titles there are all properties
 
 		if(title != null && header != null && title.checkTitle() && header.checkHeader())
 			hasCorrectHeader = true;
@@ -106,7 +107,7 @@ public class CSVReader {
 			hasCorrectHeader = false;
 
 		if (hasCorrectHeader) {
-			FillAndSortMatrix(stdin);
+			FillAndSortMatrix(stdin,headerMatrix);
 		}
 		else
 			System.out.println("the file is corrupt");
@@ -116,22 +117,25 @@ public class CSVReader {
 	 * 
 	 * @param stdin
 	 */
-	public void FillAndSortMatrix(Scanner stdin){
+	public void FillAndSortMatrix(Scanner stdin,String[][] headerMatrix){
 
-		String currentLat = "", currentLon = "", currentAlt = "";	//	The lat, lon, alt of a WIFI point
-		String currentTime;											//	The time of a WIFI point
-		int lineCounter=0;											//	Number of strMatrix's lines
-		String[] OnePoint = null;									//	Array that given from split(",") on each line of csv file
+		String currentLat = "", currentLon = "", currentAlt = "";		//	The lat, lon, alt of a WIFI point
+		String currentTime;												//	The time of a WIFI point
+		int lineCounter = 0;											//	Number of strMatrix's lines (WIFI points in given time and place)
+		String[] OnePoint = null;										//	Array that given from split(",") on each line of csv file
+		List<String[]> PointsOfOneMinute = new ArrayList<String[]>();	//	List of all WIFI points in given time and place
 
 		if(stdin.hasNext())
 		{
-			//take the first line that is not title of the file.
+			//Take the first line that is not header or title of the file.
 			OnePoint = stdin.nextLine().split(",");		
 		}
 
+		//Iterate through all the lines of the file
 		while (stdin.hasNext()) {
-			lineCounter = 0;
-			//Iterate through all the lines of the file
+			
+			PointsOfOneMinute = null;
+			lineCounter = 0;	
 
 			PointsOfOneMinute = new ArrayList<String[]>();
 			currentTime = OnePoint[3];	// the time property located 
@@ -171,14 +175,14 @@ public class CSVReader {
 			strMatrix = new String[lineCounter][COLUMNS]; //Makes string matrix for wifi parameters
 			strMatrix = PointsOfOneMinute.toArray(new String[lineCounter][11]);
 
-			FileCreater();
+			FileCreater(headerMatrix);
 		}
 	}
 
 	/**
 	 * 
 	 */
-	public void FileCreater(){
+	private void FileCreater(String[][] headerMatrix){
 
 		try(FileWriter fw = new FileWriter(outputFileName + ".csv", true);
 				BufferedWriter bw = new BufferedWriter(fw);
@@ -186,6 +190,7 @@ public class CSVReader {
 
 			String my_new_str = "";
 			if (firstTimeHeader) {
+				
 				//Print the titles of the new csv file
 				String headStr = "Time,ID,Lat,Lon,Alt,#WiFi networks";
 				for(int j = 0; j < 10; j++)
@@ -196,8 +201,10 @@ public class CSVReader {
 				firstTimeHeader = false;
 			}
 
+			//Print the data of the columns number 0-5
 			my_new_str += strMatrix[0][3] +"," + headerMatrix[0][5]+ ","+ strMatrix[0][6] + "," + strMatrix[0][7] + "," + strMatrix[0][8] + "," + ((10 > strMatrix.length) ? strMatrix.length : 10 )+ "," ;
 
+			
 			int counter_Column_Csv_Final = 0, j=0;
 
 			while (counter_Column_Csv_Final < 10 && j < strMatrix.length) {
@@ -212,8 +219,6 @@ public class CSVReader {
 		} catch (IOException e) {
 			//exception handling left as an exercise for the reader
 		}
-
-		PointsOfOneMinute = null;	
 	}
 
 	/**
