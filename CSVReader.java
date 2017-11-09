@@ -202,23 +202,46 @@ public class CSVReader {
 			}
 
 			//Print the data of the columns number 0-5
-			my_new_str += strMatrix[0][3] +"," + headerMatrix[0][5]+ ","+ strMatrix[0][6] + "," + strMatrix[0][7] + "," + strMatrix[0][8] + "," + ((10 > strMatrix.length) ? strMatrix.length : 10 )+ "," ;
-
+			my_new_str += strMatrix[0][3] +"," + headerMatrix[0][5]+ ","+ strMatrix[0][6] + "," + strMatrix[0][7] + "," + strMatrix[0][8] + ",";
 			
+			String dataPoints = "";
 			int counter_Column_Csv_Final = 0, j=0;
-
-			while (counter_Column_Csv_Final < 10 && j < strMatrix.length) {
+							
+			while (counter_Column_Csv_Final < 10 && j < strMatrix.length) {			
 				if (!strMatrix[j][COLUMNS-1].contains("GSM")) {
-					my_new_str += strMatrix[j][1] + "," + strMatrix[j][0] + "," + strMatrix[j][4] + "," + strMatrix[j][5] + ",";
+					dataPoints += strMatrix[j][1] + "," + strMatrix[j][0] + "," + convertChannelToFrequncy(strMatrix[j][4]) + "," + strMatrix[j][5] + ",";
 					counter_Column_Csv_Final++;
-				} 
+				}
 				j++;
 			}
-			out.println(my_new_str);
+			my_new_str += ((10 > counter_Column_Csv_Final) ? counter_Column_Csv_Final : 10 )+ "," + dataPoints;
+			if (counter_Column_Csv_Final > 0) {//If in this origin csv line has not any point that don't ptint this line to the new csv file
+				out.println(my_new_str);
+			}
 
 		} catch (IOException e) {
 			//exception handling left as an exercise for the reader
 		}
+	}
+
+	private String convertChannelToFrequncy(String string) {
+		
+		int i;
+		String channelString = "";
+		int channel = Integer.parseInt(string);
+		
+		if(channel >= 1 && channel <= 14)
+		{
+			i = (channel - 1) * 5 + 2412;
+			channelString = i + "";
+		}else if(channel >= 36 && channel <= 165)
+		{
+			i = (channel - 34) * 5 + 5170;
+			channelString = i + "";
+		}	
+
+		
+		return channelString;
 	}
 
 	/**

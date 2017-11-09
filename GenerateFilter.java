@@ -6,6 +6,7 @@ public class GenerateFilter{
 	private int choice; // choose which type of filter to use automatically
 	private static String userFilter=null; //global variable to track the filter
 	/**
+	 * the constructor generates an object by the choice from our menu by which it will filter
 	 * @param choice is the type of filter to be used
 	 */
 	public GenerateFilter(int choice) {
@@ -14,11 +15,11 @@ public class GenerateFilter{
 	}
 		
 	/**
-	 * This should be the first function called after the constructor
+	 * The function calls to the relevant function to get the correct input and verifies its input
 	 * @return boolean if the input was typed in the right syntax
 	 */
 	public boolean inputFilter(){
-		boolean verifyInput; //Moshe I added this!!!!
+		boolean verifyInput;
 		switch(choice) {
 		case 0:
 			break;
@@ -108,8 +109,8 @@ public class GenerateFilter{
 	}
 
 	/**
-	 * 
-	 * @return
+	 * This function asks to input the time and will continue to ask if not in the right format
+	 * @return a long which is the time converted im ms from 1970
 	 * @throws ParseException
 	 */
 	public static long inputValidTime() throws ParseException{

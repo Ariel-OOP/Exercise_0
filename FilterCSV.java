@@ -13,7 +13,12 @@ public class FilterCSV {
 		this.userFilter = userFilter;
 		this.choice = choice;
 	}
-
+	/**
+	 * The function converts the appropriate csv file(from part II!!!) to kml format
+	 * @param csvFilePath is the path to the csv file which was generated in Part II 
+	 * @param outKmlPathAndName - is the path which the kml file will be exported to
+	 * @return boolean if the operation was successful 
+	 */
 	public boolean csvToKml(String csvFilePath,String outKmlPathAndName){
 		//this.csvFilePath = csvFilePath;
 
@@ -33,7 +38,7 @@ public class FilterCSV {
 			//String onePoint = "";
 			while ((line = br.readLine()) != null) {
 				// use comma as separator
-				lineInformation = line.split(",");//Split each line to parts of properties
+				lineInformation = line.split(",");//Split each line to parts of properties 
 				if (CheckLineByFilter(lineInformation)) {
 					printPointOnMap(lineInformation,writer);
 				}
@@ -50,6 +55,7 @@ public class FilterCSV {
 	}
 
 	/**
+	 * 
 	 * @param userFilter - the filter that entered by user
 	 * @param lineInformation - all properties of current line
 	 * @return true, if the user's filter is equal to the corresponding property. else, false.
@@ -98,7 +104,11 @@ public class FilterCSV {
 
 		return lineIsCorrect;
 	}
-
+	/**
+	 * printPointOnMap will output in table format to the kml file
+	 * @param CSVLine the line in which will be written
+	 * @param KMLFile 
+	 */
 	private static void printPointOnMap(String[] CSVLine,PrintWriter KMLFile) {
 		PrintWriter writer = KMLFile;
 		String onePoint = "";
@@ -116,12 +126,13 @@ public class FilterCSV {
 		{//write the property to format of kml 
 
 
-			onePoint += "<tr>\r\n" + 
-					"<td>" + CSVLine[6 + 4*i] + "</td>\r\n" + 
-					"<td>" + CSVLine[7 + 4*i] + "</td>\r\n" + 
-					"<td>" + CSVLine[8 + 4*i] + "</td>\r\n" + 
-					"<td>"+  CSVLine[9 + 4*i] +" </td>\r\n" + 
-					"</tr>";
+			try {
+				onePoint += "<tr>\r\n" + "<td>" + CSVLine[6 + 4 * i] + "</td>\r\n" + "<td>" + CSVLine[7 + 4 * i]
+						+ "</td>\r\n" + "<td>" + CSVLine[8 + 4 * i] + "</td>\r\n" + "<td>" + CSVLine[9 + 4 * i]
+						+ " </td>\r\n" + "</tr>";
+			} catch (Exception e) {
+				System.out.println(i + "i,  Integer.parseInt(CSVLine[5]): " + Integer.parseInt(CSVLine[5]) + ",   CSVLine[6 + 4 * i]" + CSVLine[6 + 4 * (i-1)] + ",    Time:   " + CSVLine[0]);
+			}
 		}
 		onePoint += "</table>\r\n"  
 				+ "]]></description><styleUrl>#"
