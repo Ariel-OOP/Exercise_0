@@ -1,10 +1,16 @@
+/**
+ * The class is responsible to check the correctness of a line from a file.
+ * This includes the header/titles of the file and line itself.The functions make heavy use of ReGex.
+ * @author nissan,moshe and Shir
+ * @since 9-11-2017
+ */
 public class Line {
 
 	private String line;
 	
 	/**
-	 * The constructor gets string of one line
-	 * @param line - String
+	 * The constructor receives a string of one line which is usually from the file.
+	 * @param line - String which is the line from the file
 	 */
 	public Line(String line) {
 		this.line = line;
@@ -35,7 +41,7 @@ public class Line {
 		return patternCorrect;
 	}
 	/**
-	 * This method check if in the header there are WigleWifi...,appRelease=...,model=...,release=...,device=...,display=...,board=...,brand=...
+	 * This method checks if in the header there are:  WigleWifi...,appRelease=...,model=...,release=...,device=...,display=...,board=...,brand=...
 	 * @return The method return true if all the parameters appear, else the method return false.
 	 */
 	public boolean checkHeader()
@@ -55,10 +61,11 @@ public class Line {
 		return headerCorrect;
 	}
 	
-	/**
-	 * This method check if in the title there are MAC,SSID,AuthMode,FirstSeen,Channel,RSSI,CurrentLatitude,CurrentLongitude,AltitudeMeters,AccuracyMeters,Type
-	 * @return The method return true if all the parameters appear, else the method return false.
-	 */
+	
+/**
+ * This method checks if in the title there are: MAC,SSID,AuthMode,FirstSeen,Channel,RSSI,CurrentLatitude,CurrentLongitude,AltitudeMeters,AccuracyMeters,Type
+ * @return The method return true if all the parameters appear, else the method return false.
+ */
 	public boolean checkTitle()
 	{
 		boolean titleCorrect = false;
@@ -78,7 +85,4 @@ public class Line {
 		
 		return titleCorrect;
 	}
-	
-	
-
 }

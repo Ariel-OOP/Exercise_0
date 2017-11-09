@@ -1,13 +1,18 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
-
+/**
+ * The class GenerateFilter will generate a object which has a appropriate filter which can be accessed through the method .getFIlter() 
+ * @author nissan,moshe and shir
+ * @since 9-11-2017
+ * @version 0.9.9 Final Release Beta which is an Alpha of the Gamma
+ */
 public class GenerateFilter{
 	private int choice; // choose which type of filter to use automatically
 	private static String userFilter=null; //global variable to track the filter
 	/**
-	 * the constructor generates an object by the choice from our menu by which it will filter
-	 * @param choice is the type of filter to be used
+	 * the constructor generates an object by the choice from our menu by which it will ask for the corresponding filter and check for a valid input
+	 * @param choice is the type of filter to be used, see menu
 	 */
 	public GenerateFilter(int choice) {
 		this.choice = choice;
@@ -39,10 +44,11 @@ public class GenerateFilter{
 		return true;
 	}
 	
-	/**
-	 * This method is responsible for the reception of the coordinates filter.
-	 * @return boolean is the filter was verified
-	 */
+
+/**
+ * This method is responsible for the reception of the coordinates filter.
+ * @return boolean is the filter was verified
+ */
 	private static boolean getCoordinatesFilter() {
 		Scanner stdin = new Scanner(System.in);
 		String coordinateFilter = "";
@@ -73,8 +79,13 @@ public class GenerateFilter{
 				
 		} while (!correctcoordinates);
 		
-		System.out.println("\nEnter the radus from the coordinate (by meters)");
-		String radius = stdin.next();
+		//System.out.println("\nEnter the radus from the coordinate (by meters)");
+		int radius;
+		do {
+			System.out.println("\nEnter the radus from the coordinate (by meters) (more zero)");
+			radius = -1;
+			radius = Integer.parseInt(stdin.next());
+		} while (radius <= 0);
 		//TODO need to verify the text 
 		coordinateFilter = "C:" + lat_lon + "R:" + radius;
 		userFilter=coordinateFilter;  //Moshe I added this!!!!
@@ -85,10 +96,11 @@ public class GenerateFilter{
 		return true;
 	}
 	
-	/**
-	 * This method is responsible for the reception of the time filter.
-	 * @return the time filter
-	 */
+
+/**
+ * This method is responsible for the reception of the time filter.
+ * @return the time filter
+ */
 	private static boolean getTimeFilter() {
 	
 		String timeFilter = "";
@@ -111,7 +123,7 @@ public class GenerateFilter{
 	/**
 	 * This function asks to input the time and will continue to ask if not in the right format
 	 * @return a long which is the time converted im ms from 1970
-	 * @throws ParseException
+	 * @throws ParseException if incorrect date
 	 */
 	public static long inputValidTime() throws ParseException{
 		String str;
@@ -133,7 +145,7 @@ public class GenerateFilter{
 	
 	/**
 	 * This method is responsible for the reception of the ID filter.
-	 * @return the ID filter
+	 * @return the ID filter .
 	 */
 	private static boolean getIDFilter() {
 

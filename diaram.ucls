@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.1" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="FilterCSV" project="OOPCSV" file="/OOPCSV/src/FilterCSV.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="243" width="288" x="130" y="-23"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="MainEx0_3" project="OOPCSV" file="/OOPCSV/src/MainEx0_3.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="119" x="458" y="-23"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="Ex0_3" project="OOPCSV" file="/OOPCSV/src/Ex0_3.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="756" y="230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="Line" project="OOPCSV" file="/OOPCSV/src/Line.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="139" x="945" y="-23"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="CSVReader" project="OOPCSV" file="/OOPCSV/src/CSVReader.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="351" width="345" x="1124" y="-23"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="GenerateFilter" project="OOPCSV" file="/OOPCSV/src/GenerateFilter.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="171" x="1509" y="-23"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="MainEx0" project="OOPCSV" file="/OOPCSV/src/MainEx0.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="113" x="1720" y="-23"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

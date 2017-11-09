@@ -11,7 +11,12 @@ import java.util.Comparator;
 //import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * CSVReader class will automatically create a CSV file from one or many CSV files in a folder.The newly created file takes the at most 10 strongest WIFI receptions at 
+ * a certain time with the same location.
+ * @author nissan,moshe and shir
+ * @since 9-11-2017
+ */
 public class CSVReader {
 
 	private String folderPath;
@@ -25,7 +30,8 @@ public class CSVReader {
 
 
 	/**
-	 * @param folderPathInput ex. "C:\\Users\\Moshe\\Desktop\\data\\27.10\\Lenovo"
+	 * The constructor will setup the object and will delete if the file already exists. From there on it will continue automatically and create a new CSV file with the name given.
+	 * @param folderPathInput - is the string which is the folder path an ex. "C:\\Users\\USER\\Desktop\\27.10\\Lenovo"
 	 * @param outputFileName the name of the file to output to csv format ex. wifiStrength 
 	 */
 	public CSVReader(String folderPathInput,String outputFileName) {
@@ -70,8 +76,8 @@ public class CSVReader {
 	}
 
 	/**
-	 * 
-	 * @param stdin
+	 * The function checks whether the file header and data itself is not corrupt or out of order which it cannot be read correctly
+	 * @param stdin - is the current file being read
 	 */
 	private void ReadHeaderAndData(Scanner stdin){
 
@@ -114,8 +120,8 @@ public class CSVReader {
 	}
 
 	/**
-	 * 
-	 * @param stdin
+	 * The method takes the data and fills an List and then sorts it using at the most 10, strongest receptions.
+	 * @param stdin file
 	 */
 	public void FillAndSortMatrix(Scanner stdin,String[][] headerMatrix){
 
@@ -180,7 +186,7 @@ public class CSVReader {
 	}
 
 	/**
-	 * 
+	 * The method creates a appropriate CSV file from either one or more files after the data was sorted in each file.
 	 */
 	private void FileCreater(String[][] headerMatrix){
 
@@ -223,7 +229,13 @@ public class CSVReader {
 			//exception handling left as an exercise for the reader
 		}
 	}
-
+	
+	/**
+	 * the method converts the channel to the corrisponding frequency
+	 * @source: Yitzchak Sharon & Meirav
+	 * @param string - which is the channel
+	 * @return String - which is the frequency in mhz
+	 */
 	private String convertChannelToFrequncy(String string) {
 		
 		int i;
@@ -245,81 +257,81 @@ public class CSVReader {
 	}
 
 	/**
-	 * 
-	 * @param currentLat
-	 * @param currentLon
-	 * @param currentAlt
-	 * @param currentTime
-	 * @param line
-	 * @return
+	 * Compares between the previous line and the current line to check if they have the same time and location.
+	 * @param currentLat - from the previous line store to compare if it equals the current line
+	 * @param currentLon - from the previous line 
+	 * @param currentAlt - from the previous line 
+	 * @param currentTime - from the previous line 
+	 * @param line - the current line 
+	 * @return true if the time and locationa are the same otherwise returns false.
 	 */
 	private boolean CheckSameParameters(String currentLat, String currentLon, String currentAlt, String currentTime, String[] line) {
 
-		boolean latIsEqual = CheckIfInOneLat(currentLat,line[6]);
-		boolean lonIsEqual = CheckIfInOneLon(currentLon,line[7]);
-		boolean altIsEqual = CheckIfInOneAlt(currentAlt,line[8]);;
-		boolean timesIsEqual = CheckIfInOneTime(currentTime,line[3]);
+		boolean latIsEqual = currentLat.equals(line[6]);
+		boolean lonIsEqual = currentLon.equals(line[7]);
+		boolean altIsEqual = currentAlt.equals(line[8]);;
+		boolean timesIsEqual = currentTime.equals(line[3]);
 
 		return latIsEqual && lonIsEqual && altIsEqual && timesIsEqual;
 	}
 	
-	/**
-	 * 
-	 * @param currentLat
-	 * @param string
-	 * @return
-	 */
-	private boolean CheckIfInOneLat(String currentLat, String string) {
-		boolean latIsEqual;
-
-		latIsEqual = currentLat.equals(string);
-
-		return latIsEqual;
-	}
-	
-	/**
-	 * 
-	 * @param currentLon
-	 * @param string
-	 * @return
-	 */
-	private boolean CheckIfInOneLon(String currentLon, String string) {
-		boolean lonIsEqual;
-
-		lonIsEqual = currentLon.equals(string);
-
-		return lonIsEqual;
-	}
-	
-	
-	/**
-	 * 
-	 * @param currentAlt
-	 * @param string
-	 * @return
-	 */
-	private boolean CheckIfInOneAlt(String currentAlt, String string) {
-		boolean altIsEqual;
-
-		altIsEqual = currentAlt.equals(string);
-
-		return altIsEqual;
-	}
-
-	/**
-	 * 
-	 * @param currentTime
-	 * @param string
-	 * @return
-	 */
-	private boolean CheckIfInOneTime(String currentTime, String string) {
-
-		boolean timesIsEqual;
-
-		timesIsEqual = currentTime.equals(string);
-
-		return timesIsEqual;
-	}
+//	/**
+//	 * 
+//	 * @param currentLat
+//	 * @param string
+//	 * @return
+//	 */
+//	private boolean CheckIfInOneLat(String currentLat, String string) {
+//		boolean latIsEqual;
+//
+//		latIsEqual = currentLat.equals(string);
+//
+//		return latIsEqual;
+//	}
+//	
+//	/**
+//	 * 
+//	 * @param currentLon
+//	 * @param string
+//	 * @return
+//	 */
+//	private boolean CheckIfInOneLon(String currentLon, String string) {
+//		boolean lonIsEqual;
+//
+//		lonIsEqual = currentLon.equals(string);
+//
+//		return lonIsEqual;
+//	}
+//	
+//	
+//	/**
+//	 * 
+//	 * @param currentAlt
+//	 * @param string
+//	 * @return
+//	 */
+//	private boolean CheckIfInOneAlt(String currentAlt, String string) {
+//		boolean altIsEqual;
+//
+//		altIsEqual = currentAlt.equals(string);
+//
+//		return altIsEqual;
+//	}
+//
+//	/**
+//	 * 
+//	 * @param currentTime
+//	 * @param string
+//	 * @return
+//	 */
+//	private boolean CheckIfInOneTime(String currentTime, String string) {
+//
+//		boolean timesIsEqual;
+//
+//		timesIsEqual = currentTime.equals(string);
+//
+//		return timesIsEqual;
+//	}
 }
 
 

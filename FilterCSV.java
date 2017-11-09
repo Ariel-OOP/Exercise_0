@@ -3,18 +3,26 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+/**
+ * The class can be used to create objects that can be used to export files to KML format (Part III of our exercise)
+ * @author nissan,moshe and shir
+ * @since 9-11-2017
+ */
 public class FilterCSV {
 	String userFilter;
 	static int choice;
 	//static String csvFilePath;
-
+	/**
+	 * The constructor takes the arguments and creates a object that will use the the correct filter
+	 * @param userFilter is the generated filter from the GenerateFilter class obj.getFilter() 
+	 * @param choice is the choice from our main menu
+	 */
 	public FilterCSV(String userFilter,int choice) {
 		this.userFilter = userFilter;
 		this.choice = choice;
 	}
 	/**
-	 * The function converts the appropriate csv file(from part II!!!) to kml format
+	 * The function converts the appropriate CSV file(from part II!!!) to kml format
 	 * @param csvFilePath is the path to the csv file which was generated in Part II 
 	 * @param outKmlPathAndName - is the path which the kml file will be exported to
 	 * @return boolean if the operation was successful 
@@ -55,12 +63,12 @@ public class FilterCSV {
 	}
 
 	/**
-	 * 
+	 * The method checks the current line in the csv file if it complies with the filter
 	 * @param userFilter - the filter that entered by user
 	 * @param lineInformation - all properties of current line
 	 * @return true, if the user's filter is equal to the corresponding property. else, false.
 	 */
-	public /*static*/ boolean CheckLineByFilter(String[] lineProperties) {
+	public boolean CheckLineByFilter(String[] lineProperties) {
 
 		boolean lineIsCorrect = false;
 
@@ -104,11 +112,12 @@ public class FilterCSV {
 
 		return lineIsCorrect;
 	}
+
 	/**
-	 * printPointOnMap will output in table format to the kml file
-	 * @param CSVLine the line in which will be written
-	 * @param KMLFile 
-	 */
+ * printPointOnMap will output in table format to the kml file
+ * @param CSVLine the line in which will be written
+ * @param KMLFile 
+ */
 	private static void printPointOnMap(String[] CSVLine,PrintWriter KMLFile) {
 		PrintWriter writer = KMLFile;
 		String onePoint = "";
@@ -152,10 +161,10 @@ public class FilterCSV {
 
 	/**
 	 * 
-	 * @param startDate
-	 * @param endDate
-	 * @param fileDate
-	 * @return
+	 * @param startDate start date
+	 * @param endDate end date
+	 * @param fileDate .
+	 * @return if the date was correct
 	 */
 	public static boolean setDate(long startDate, long endDate, long fileDate){
 		if ( (fileDate-startDate)>=0 && (endDate-fileDate)>=0 )
@@ -192,7 +201,7 @@ public class FilterCSV {
 	 * 
 	 * @param coordinate - Coordinate of one point
 	 * @param i - the number of current point in given minute
-	 * @return
+	 * @return the corresponding string
 	 */
 	private static String FixLatLonPoint(String coordinate,int i) {
 
