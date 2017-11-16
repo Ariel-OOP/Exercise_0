@@ -5,7 +5,6 @@
  * @since 9-11-2017
  */
 public class Line {
-	//
 	private String line;
 	
 	/**
