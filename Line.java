@@ -4,7 +4,8 @@
  * @author nissan,moshe and Shir
  * @since 9-11-2017
  */
-public class Line {//
+public class Line {
+	//
 	private String line;
 	
 	/**
