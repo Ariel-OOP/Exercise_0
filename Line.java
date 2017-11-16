@@ -6,6 +6,7 @@
  */
 public class Line {
 
+	
 	private String line;
 	
 	/**
