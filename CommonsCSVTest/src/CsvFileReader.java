@@ -42,8 +42,11 @@ public class CsvFileReader {
 	public CsvFileReader(String fileName)
 	{
 		this.fileName = fileName;
-		//TODO change 
 	}
+	
+	/**
+	 * 
+	 */
 	public void readCsvFile() {
 
 		FileReader fileReader = null;
