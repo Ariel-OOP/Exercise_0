@@ -1,5 +1,5 @@
 /**
- * @author ashraf
+ * @author moshe and nissan
  *
  */
 public class CsvWriteReadTest {
@@ -16,7 +16,8 @@ public class CsvWriteReadTest {
 //		CsvFileWriter.writeCsvFile(fileName);
 		
 		System.out.println("\nRead CSV file:");
-		CsvFileReader.readCsvFile(fileName);
+		CsvFileReader csvFileReader = new CsvFileReader();
+		csvFileReader.readCsvFile(fileName);
 
 	}
 

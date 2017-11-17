@@ -10,30 +10,30 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 /**
- * @author ashraf_sarhan
+ * @author moshe, nissan
  *
  */
 public class CsvFileReader {
 	
 	//CSV file header
-    private static final String [] FILE_HEADER_MAPPING = {"MAC","SSID","AuthMode","FirstSeen","Channel","RSSI","CurrentLatitude","CurrentLongitude","AltitudeMeters","AccuracyMeters","Type"};
+    private  final String [] FILE_HEADER_MAPPING = {"MAC","SSID","AuthMode","FirstSeen","Channel","RSSI","CurrentLatitude","CurrentLongitude","AltitudeMeters","AccuracyMeters","Type"};
 	
 	//WIFI attributes
-	private static final String WIFI_MAC = "MAC";
-	private static final String WIFI_SSID = "SSID";
-	private static final String WIFI_AuthMode = "AuthMode";
-	private static final String WIFI_FirstSeen = "FirstSeen"; 
-	private static final String WIFI_Channel = "Channel";
-	private static final String WIFI_RSSI = "RSSI";
-	private static final String WIFI_Lat = "CurrentLatitude";
-	private static final String WIFI_Lon = "CurrentLongitude";
-	private static final String WIFI_Alt = "AltitudeMeters"; 
-	private static final String WIFI_Accuracy = "AccuracyMeters";
-	private static final String WIFI_Type = "Type";
+	private final String WIFI_MAC = "MAC";
+	private final String WIFI_SSID = "SSID";
+	private final String WIFI_AuthMode = "AuthMode";
+	private final String WIFI_FirstSeen = "FirstSeen"; 
+	private final String WIFI_Channel = "Channel";
+	private final String WIFI_RSSI = "RSSI";
+	private final String WIFI_Lat = "CurrentLatitude";
+	private final String WIFI_Lon = "CurrentLongitude";
+	private final String WIFI_Alt = "AltitudeMeters"; 
+	private final String WIFI_Accuracy = "AccuracyMeters";
+	private final String WIFI_Type = "Type";
 	
-	private static String[] firstLine_DeviceAttributes = {};
+	private String[] firstLine_DeviceAttributes = {};
 	
-	public static void readCsvFile(String fileName) {
+	public void readCsvFile(String fileName) {
 
 		FileReader fileReader = null;
 		
