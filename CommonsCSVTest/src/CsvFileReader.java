@@ -33,7 +33,18 @@ public class CsvFileReader {
 	
 	private String[] firstLine_DeviceAttributes = {};
 	
-	public void readCsvFile(String fileName) {
+	private String fileName = "";
+	
+	/**
+	 * 
+	 * @param fileName
+	 */
+	public CsvFileReader(String fileName)
+	{
+		this.fileName = fileName;
+		//TODO change 
+	}
+	public void readCsvFile() {
 
 		FileReader fileReader = null;
 		

@@ -14,8 +14,8 @@ public class CsvWriteReadTest {
 	public static void main(String[] args) {
 
 		Scanner stdin;			
-		String folderPath="C:\\Users\\nissa\\Desktop\\Year 2\\OOP\\Programs\\27.10\\Lenovo";
-//		String folderPath="C:\\Users\\Moshe\\Desktop";
+//		String folderPath="C:\\Users\\nissa\\Desktop\\Year 2\\OOP\\Programs\\27.10\\Lenovo";
+		String folderPath="C:\\Users\\Moshe\\Desktop\\data\\27.10\\Simple_1";
 		File dir = new File(folderPath);		//	The current file
 		for (File file : dir.listFiles()) {
 
@@ -34,8 +34,8 @@ public class CsvWriteReadTest {
 				e.printStackTrace();
 			}
 			System.out.println("\nRead CSV file:");
-			CsvFileReader csvFileReader = new CsvFileReader();
-			csvFileReader.readCsvFile(file.toString());	
+			CsvFileReader csvFileReader = new CsvFileReader(file.toString());
+			csvFileReader.readCsvFile();	
 		}
 
 		String fileName = "FromWIFIWigle.csv";
