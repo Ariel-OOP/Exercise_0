@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.text.Normalizer;
 
 /**
- * Created by nissa on 11/17/2017.
+ * Created by nissan on 11/17/2017.
  */
 public class JakTester {
     public static void main(String[] args) {
@@ -37,7 +37,7 @@ public class JakTester {
 
         kml.setFeature(document);
         try {
-            kml.marshal(new File("HelloKML2.kml"));
+            kml.marshal(new File("HelloKML.kml"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
