@@ -11,13 +11,14 @@ import org.apache.commons.csv.CSVRecord;
 
 /**
  * @author moshe, nissan
- *
+ 
  */
-public class CsvFileReader {
+public class WigleFileReader {
 	
 	//CSV file header
     private  final String [] FILE_HEADER_MAPPING = {"MAC","SSID","AuthMode","FirstSeen","Channel","RSSI","CurrentLatitude","CurrentLongitude","AltitudeMeters","AccuracyMeters","Type"};
-	
+    //A list of all wifi points
+    private List<WIFISample> allWifiPoints; 
 	//WIFI attributes
 	private final String WIFI_MAC = "MAC";
 	private final String WIFI_SSID = "SSID";
@@ -39,7 +40,7 @@ public class CsvFileReader {
 	 * 
 	 * @param fileName
 	 */
-	public CsvFileReader(String fileName)
+	public WigleFileReader(String fileName)
 	{
 		this.fileName = fileName;
 	}
@@ -58,8 +59,9 @@ public class CsvFileReader {
      
         try {
         	
-        	//Create a new list of student to be filled by CSV file data 
-        	List<WIFISample> allWifiPoints = new ArrayList();
+        	//Create a new list of wifi points to be filled by CSV file data
+        	//each element is a WIFi sample
+        	 allWifiPoints = new ArrayList();
             
             //initialize FileReader object
             fileReader = new FileReader(fileName);
@@ -104,4 +106,7 @@ public class CsvFileReader {
 
 	}
 
+	public List<WIFISample> getWigleList() {
+		return allWifiPoints;
+	}
 }
