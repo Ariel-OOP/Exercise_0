@@ -48,7 +48,7 @@ public class WigleFileReader {
 	}
 	
 	/**
-	 * 
+	 * readCsvFile reads a wigle file and will automatically sort the file file by time,location and RSSI
 	 */
 	public void readCsvFile() {
 
@@ -102,14 +102,19 @@ public class WigleFileReader {
             		 	PointsOfOneMinute.add(wifiSample);
              	}else {
              		//Sorting 10 best wifi signals
+             		
             		Collections.sort(PointsOfOneMinute, new Comparator<WIFISample>() {
             			@Override
             			public int compare(WIFISample wifi1, WIFISample wifi2) {
             				return wifi1.getWIFI_RSSI().compareTo(wifi2.getWIFI_RSSI());
             			}
             		});
+            		int tenOrLessPoints=0;
             		for(WIFISample wifiSamp : PointsOfOneMinute) {
-            			allWifiPoints.add(wifiSamp);
+            			if (tenOrLessPoints<=10) {
+            				allWifiPoints.add(wifiSamp);
+            				tenOrLessPoints++;
+            			}
             		}
             		prev = wifiSample;
             		PointsOfOneMinute.clear();
@@ -140,8 +145,12 @@ public class WigleFileReader {
         }
 
 	}
-
+	
+	/*
+	 * getWigleList will return the final sorted list of wifi includes more than 10
+	 */
 	public List<WIFISample> getWigleList() {
 		return allWifiPoints;
 	}
+	  
 }
