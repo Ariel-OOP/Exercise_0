@@ -14,18 +14,18 @@ public class CsvWriteReadTest {
 	public static void main(String[] args) {
 
 		Scanner stdin;			
-//		String folderPath="C:\\Users\\nissa\\Desktop\\Year 2\\OOP\\Programs\\27.10\\Lenovo";
-		String folderPath="C:\\Users\\Moshe\\Desktop\\data\\27.10\\Simple_1";
+		String folderPath="C:\\Users\\nissa\\Desktop\\Year 2\\OOP\\WigleFromPhone";
+		//		String folderPath="C:\\Users\\Moshe\\Desktop\\data\\27.10\\Simple_1";
 		File dir = new File(folderPath);		//	The current file
 		for (File file : dir.listFiles()) {
 
 			stdin = null;	//Gave null so it would be initialized
-
+			WigleFileReader wigleFileReader;
 			try {
 				//Incorrect file type-reject
 				if (!(file.getName().toLowerCase().endsWith(".csv"))){
 					System.out.println(file.getName()+" is an incorrect file type in the folder");
-					System.out.println("the file was not added to the csv file");
+					System.out.println("the file was not added to the csv file error 404");
 					continue;
 				}
 				//Read the text from current file
@@ -34,8 +34,9 @@ public class CsvWriteReadTest {
 				e.printStackTrace();
 			}
 			System.out.println("\nRead CSV file:");
-			CsvFileReader csvFileReader = new CsvFileReader(file.toString());
-			csvFileReader.readCsvFile();	
+			wigleFileReader = new WigleFileReader(file.toString());
+			wigleFileReader.readCsvFile();	
+			
 		}
 
 		String fileName = "FromWIFIWigle.csv";
@@ -43,7 +44,6 @@ public class CsvWriteReadTest {
 
 		//		System.out.println("Write CSV file:");
 		//		CsvFileWriter.writeCsvFile(fileName);
-
 
 
 	}

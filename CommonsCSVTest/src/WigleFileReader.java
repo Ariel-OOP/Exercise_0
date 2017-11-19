@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
@@ -11,13 +13,14 @@ import org.apache.commons.csv.CSVRecord;
 
 /**
  * @author moshe, nissan
- *
+ 
  */
-public class CsvFileReader {
+public class WigleFileReader {
 	
 	//CSV file header
     private  final String [] FILE_HEADER_MAPPING = {"MAC","SSID","AuthMode","FirstSeen","Channel","RSSI","CurrentLatitude","CurrentLongitude","AltitudeMeters","AccuracyMeters","Type"};
-	
+    //A list of all wifi points
+    private List<WIFISample> allWifiPoints; 
 	//WIFI attributes
 	private final String WIFI_MAC = "MAC";
 	private final String WIFI_SSID = "SSID";
@@ -39,7 +42,7 @@ public class CsvFileReader {
 	 * 
 	 * @param fileName
 	 */
-	public CsvFileReader(String fileName)
+	public WigleFileReader(String fileName)
 	{
 		this.fileName = fileName;
 	}
@@ -58,8 +61,9 @@ public class CsvFileReader {
      
         try {
         	
-        	//Create a new list of student to be filled by CSV file data 
-        	List<WIFISample> allWifiPoints = new ArrayList();
+        	//Create a new list of wifi points to be filled by CSV file data
+        	//each element is a WIFi sample
+        	 allWifiPoints = new ArrayList();
             
             //initialize FileReader object
             fileReader = new FileReader(fileName);
@@ -74,20 +78,53 @@ public class CsvFileReader {
             List csvRecords = csvFileParser.getRecords(); 
             
             //Read the CSV file records starting from the second record to skip the header
-            for (int i = 1; i < csvRecords.size(); i++) {
-            	CSVRecord record = (CSVRecord) csvRecords.get(i);
+        	CSVRecord record = (CSVRecord) csvRecords.get(0);
+        	
+        	WIFISample wifiSample = new WIFISample(record.get(WIFI_MAC),record.get(WIFI_SSID),record.get(WIFI_FirstSeen),
+        			record.get(WIFI_Channel),record.get(WIFI_RSSI),record.get(WIFI_Lat),record.get(WIFI_Lon),
+        			record.get(WIFI_Alt),record.get(WIFI_Type));
+     
+            allWifiPoints.add(wifiSample);
+            WIFISample prev = allWifiPoints.get(0); 
+			List<WIFISample> PointsOfOneMinute = new ArrayList<>();
+
+            for (int i = 2; i < csvRecords.size(); i++) {
+            	 record = (CSVRecord) csvRecords.get(i);
             	//Create a new WIFISample object and fill his data
-            	WIFISample wifiSample = new WIFISample(record.get(WIFI_MAC),record.get(WIFI_SSID),record.get(WIFI_FirstSeen),
+            	
+            	
+            	 wifiSample = new WIFISample(record.get(WIFI_MAC),record.get(WIFI_SSID),record.get(WIFI_FirstSeen),
             			record.get(WIFI_Channel),record.get(WIFI_RSSI),record.get(WIFI_Lat),record.get(WIFI_Lon),
             			record.get(WIFI_Alt),record.get(WIFI_Type));
             	
-                allWifiPoints.add(wifiSample);	
+            	//TODO edit here
+            	 if (wifiSample.getWIFI_Lat().equals(prev.getWIFI_Lat()) && wifiSample.getWIFI_Lat().equals(prev.getWIFI_Lat()) && wifiSample.getWIFI_FirstSeen().equals(prev.getWIFI_FirstSeen()) ) {
+            		 	PointsOfOneMinute.add(wifiSample);
+             	}else {
+             		//Sorting 10 best wifi signals
+            		Collections.sort(PointsOfOneMinute, new Comparator<WIFISample>() {
+            			@Override
+            			public int compare(WIFISample wifi1, WIFISample wifi2) {
+            				return wifi1.getWIFI_RSSI().compareTo(wifi2.getWIFI_RSSI());
+            			}
+            		});
+            		for(WIFISample wifiSamp : PointsOfOneMinute) {
+            			allWifiPoints.add(wifiSamp);
+            		}
+            		prev = wifiSample;
+            		PointsOfOneMinute.clear();
+            		PointsOfOneMinute.add(wifiSample);		
+             	}
+
+             	}
+            
+            //Print the new wifi list
+            for (WIFISample wifiSamp : allWifiPoints) {
+				System.out.println(wifiSamp.toString() +"\nSignal: "+wifiSamp.getWIFI_RSSI() +" Time:"+wifiSamp.getWIFI_FirstSeen() );
+				System.out.println("\n device:"+ wifiSamp.getWIFI_Device());
 			}
             
-            //Print the new student list
-            for (WIFISample wifiSamp : allWifiPoints) {
-				System.out.println(wifiSamp.toString());
-			}
+          
         } 
         catch (Exception e) {
         	System.out.println("Error in CsvFileReader !!!");
@@ -104,4 +141,7 @@ public class CsvFileReader {
 
 	}
 
+	public List<WIFISample> getWigleList() {
+		return allWifiPoints;
+	}
 }
