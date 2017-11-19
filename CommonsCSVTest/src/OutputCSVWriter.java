@@ -41,17 +41,10 @@ public class OutputCSVWriter {
 				}
 				wigleFileReader = new WigleFileReader(file.getName());
 				wigleFileReader.readCsvFile();
-				allSortedPoints.addAll(wigleFileReader.getWigleList());		
+				allSortedPoints.addAll(wigleFileReader.getWigleList());
+				
 		}
 		
-
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }
