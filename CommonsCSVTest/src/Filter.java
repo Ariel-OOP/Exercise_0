@@ -3,7 +3,6 @@ package CommonsCSVTest.src;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 //Todo remove scanner
 
 /**
@@ -165,15 +164,4 @@ public class Filter {
         return lineIsCorrect;
     }
 
-    public static void main(String[] args) {
-        Scanner stdin = new Scanner(System.in);
-        System.out.println("enter 0,1");
-        int inputChoice = Integer.parseInt(stdin.nextLine());
-        Filter filter = new Filter(inputChoice);
-        if (filter.setFilter(stdin.nextLine()) )
-           System.out.println("succes");
-        else
-            System.out.println("failure");
-
-    }
 }
