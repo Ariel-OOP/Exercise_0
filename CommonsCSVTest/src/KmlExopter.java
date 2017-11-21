@@ -3,10 +3,14 @@ package CommonsCSVTest.src;
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
+import de.micromata.opengis.kml.v_2_2_0.TimeSpan;
 import org.apache.commons.csv.CSVParser;
 
 import java.io.*;
 import java.text.Normalizer;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by nissan on 11/17/2017.
@@ -29,6 +33,7 @@ public class KmlExopter {
     public boolean csvToKml(Filter filter) {
         kml = new Kml();
         document = kml.createAndSetDocument();
+        //TODO see if this helps kml header
 
         BufferedReader br = null;
         String line;
@@ -92,19 +97,24 @@ public class KmlExopter {
                 }
             }
             onePoint += "</table>"
-                    + "]]></description>"// +
-//                    "<styleUrl>#"
+//                    + "]]>"
+                   + "</description>";
+//                    + "<styleUrl>#"
 //                    + theColorOfPoint(CSVLine[9])
 //                    + "</styleUrl>"
-                    + "<Point>"
-                    + "<coordinates>"
-                    + CSVLine[3] +","
-                    + CSVLine[2]
-                    + "</coordinates>"
-                    + "</coordinates>"
-                    + "</Point>";
+//                    + "<Point>"
+//                    + "<coordinates>"
+//                    + CSVLine[3] +","
+//                    + CSVLine[2]
+//                    + "</coordinates>"
+//                    + "</coordinates>"
+//                    + "</Point>";
 
-            document.createAndAddPlacemark().withId("Wifi 1").withDescription(onePoint)
+
+            //TODO test if withId is null wht happens
+            document.createAndAddPlacemark().withId(CSVLine[7])
+//                    .withStyleUrl("http://maps.google.com/mapfiles/ms/icons/green-dot.png")
+                    .withDescription(onePoint)
                     .createAndSetPoint().addToCoordinates(Double.parseDouble(CSVLine[3]),Double.parseDouble(CSVLine[2] ));
     }
 
@@ -142,24 +152,24 @@ public class KmlExopter {
 //            e.printStackTrace();
 //        }
 //    }
-private static String theColorOfPoint(String str) {
-
-    int RXLnumber = Integer.parseInt(str);
-    String color = "";
-
-    if(RXLnumber <= 0 && RXLnumber > -70)
-    {
-        color = "green";
-    }
-    else if(RXLnumber <= -70 && RXLnumber > -80)
-    {
-        color = "yellow";
-    }
-    else
-        color = "red";
-
-
-    return color;
-}
+//private static String theColorOfPoint(String str) {
+//
+//    int RXLnumber = Integer.parseInt(str);
+//    String color = "";
+//
+//    if(RXLnumber <= 0 && RXLnumber > -70)
+//    {
+//        color = "green";
+//    }
+//    else if(RXLnumber <= -70 && RXLnumber > -80)
+//    {
+//        color = "yellow";
+//    }
+//    else
+//        color = "red";
+//
+//
+//    return color;
+//}
 
 }
