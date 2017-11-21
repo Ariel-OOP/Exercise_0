@@ -1,4 +1,4 @@
-package Old_Version;
+package CommonsCSVTest.src;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -128,6 +128,42 @@ public class Filter {
 
     }
 
+
+    /**
+     * The method checks the current line in the csv file if it complies with the filter
+     * @param lineProperties - all properties of current line
+     * @return true, if the user's filter is equal to the corresponding property. else, false.
+     */
+    public boolean checkLineByFilter(String[] lineProperties) {
+
+        boolean lineIsCorrect = false;
+
+        switch(choice) {
+            case NOFILTER: return true;
+            case LOCATION:
+                return LineFilters.distFrom(locationObject[0],locationObject[1],Double.parseDouble(lineProperties[2]),Double.parseDouble(lineProperties[3]),locationObject[3]);
+            case TIME:
+                String strDateFromFile = "";
+                String dateFormatFile = "dd/MM/yyyy hh:mm";
+                long dateFromFile;
+                try {
+                    String year = lineProperties[0].substring(0, 4), month = lineProperties[0].substring(5,7), day = lineProperties[0].substring(8,10);
+                    String time = lineProperties[0].substring(11, lineProperties[0].length() - 3);
+
+                    strDateFromFile = day + "/" + month + "/" + year + " " + time;
+                    dateFromFile = new SimpleDateFormat(dateFormatFile).parse(strDateFromFile).getTime();
+
+                    return LineFilters.isDateInBounds(timeObject[0], timeObject[1], dateFromFile);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case ID://01-01-2001 00:00 , 31-10-2017 00:00
+                return idObject.equals(lineProperties[1]);
+        }
+
+        return lineIsCorrect;
+    }
 
     public static void main(String[] args) {
         Scanner stdin = new Scanner(System.in);
