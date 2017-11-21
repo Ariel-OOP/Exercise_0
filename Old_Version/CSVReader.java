@@ -1,3 +1,5 @@
+package Old_Version;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 /**
- * CSVReader class will automatically create a CSV file from one or many CSV files in a folder.The newly created file takes the at most 10 strongest WIFI receptions at 
+ * Old_Version.CSVReader class will automatically create a CSV file from one or many CSV files in a folder.The newly created file takes the at most 10 strongest WIFI receptions at
  * a certain time with the same location.
  * @author nissan,moshe and shir
  * @since 9-11-2017

@@ -1,3 +1,5 @@
+package Old_Version;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
@@ -14,7 +16,7 @@ public class FilterCSV {
 	//static String csvFilePath;
 	/**
 	 * The constructor takes the arguments and creates a object that will use the the correct filter
-	 * @param userFilter is the generated filter from the GenerateFilter class obj.getFilter() 
+	 * @param userFilter is the generated filter from the Old_Version.GenerateFilter class obj.getFilter()
 	 * @param choice is the choice from our main menu
 	 */
 	public FilterCSV(String userFilter,int choice) {

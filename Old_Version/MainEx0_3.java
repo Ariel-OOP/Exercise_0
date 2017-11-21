@@ -1,3 +1,5 @@
+package Old_Version;
+
 import java.util.Scanner;
 
 public class MainEx0_3 {
@@ -6,7 +8,8 @@ public class MainEx0_3 {
 		int choice;
 		String inputCSVPath ="C:\\Users\\Moshe\\Desktop\\data\\wifiStrength.csv";
 		String outputKmlpath = "C:\\Users\\Moshe\\Desktop\\google_earth_WIFI.kml";
-		
+
+
 		choice=getUserChoice();
 		GenerateFilter filter = new GenerateFilter(choice);
 		FilterCSV lineFromCSV = new FilterCSV(filter.getFilter() , choice);
@@ -18,8 +21,7 @@ public class MainEx0_3 {
 
 		
 	}
-	
-	
+
 	/**
 	 * the function asks for a int as a choice in our main menu to either filter by ID,Time or Cord.
 	 * @return an int which is the choice of the user
