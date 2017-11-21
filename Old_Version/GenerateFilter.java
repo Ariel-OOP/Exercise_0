@@ -1,8 +1,10 @@
+package Old_Version;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 /**
- * The class GenerateFilter will generate a object which has a appropriate filter which can be accessed through the method .getFIlter() 
+ * The class Old_Version.GenerateFilter will generate a object which has a appropriate filter which can be accessed through the method .getFIlter()
  * @author nissan,moshe and shir
  * @since 9-11-2017
  * @version 0.9.9 Final Release Beta which is an Alpha of the Gamma
