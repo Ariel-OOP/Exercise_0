@@ -9,7 +9,6 @@ public class MainEx0_3 {
 		String inputCSVPath ="C:\\Users\\Moshe\\Desktop\\data\\wifiStrength.csv";
 		String outputKmlpath = "C:\\Users\\Moshe\\Desktop\\google_earth_WIFI.kml";
 
-
 		choice=getUserChoice();
 		GenerateFilter filter = new GenerateFilter(choice);
 		FilterCSV lineFromCSV = new FilterCSV(filter.getFilter() , choice);

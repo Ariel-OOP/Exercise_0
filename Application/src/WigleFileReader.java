@@ -1,4 +1,5 @@
 package Application.src;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,7 +21,9 @@ public class WigleFileReader {
 	//CSV file header
 	private  final String [] FILE_HEADER_MAPPING = {"MAC","SSID","AuthMode","FirstSeen","Channel","RSSI","CurrentLatitude","CurrentLongitude","AltitudeMeters","AccuracyMeters","Type"};
 	//A list of all wifi points
+
 	private List<LineOfFinalCSV> allWifiPoints; 
+  
 	//WIFI attributes
 	private final String WIFI_MAC = "MAC";
 	private final String WIFI_SSID = "SSID";
@@ -35,6 +38,7 @@ public class WigleFileReader {
 	private final String WIFI_Type = "Type";
 
 	private String[] firstLine_DeviceAttributes = {};
+
 	private String[] firstLine_Titles = {};
 
 	private String fileName = "";
@@ -75,6 +79,7 @@ public class WigleFileReader {
 			//Read line of device attributes
 			BufferedReader inStream = new BufferedReader(fileReader);
 			firstLine_DeviceAttributes = inStream.readLine().split(",");
+
 			firstLine_Titles = inStream.readLine().split(",");
 
 			correctHeaderAndTitle = checkTitle(firstLine_Titles) && checkHeader(firstLine_DeviceAttributes);
@@ -89,6 +94,7 @@ public class WigleFileReader {
 			List csvRecords = csvFileParser.getRecords(); 
 
 			//Read the CSV file records starting from the second record to skip the header
+
 			CSVRecord record = (CSVRecord) csvRecords.get(1);
 
 			//
@@ -114,6 +120,7 @@ public class WigleFileReader {
 				//Compares the previous lan, lat and time to the current WIFI sample // Mybe add Compares alt
 				if (wifiSample.getWIFI_Lat().equals(prev.getWIFI_Lat()) && wifiSample.getWIFI_Lon().equals(prev.getWIFI_Lon()) && wifiSample.getWIFI_FirstSeen().equals(prev.getWIFI_FirstSeen()) ) {
 					PointsOfOneMinute.add(wifiSample);
+
 				}else
 				{
 					allWifiPoints.add(takeTopTenPoints(PointsOfOneMinute));
@@ -221,5 +228,4 @@ public class WigleFileReader {
 		}
 		return titleCorrect;
 	}
-
 }

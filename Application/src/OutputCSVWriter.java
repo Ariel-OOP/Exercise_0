@@ -1,4 +1,5 @@
 package Application.src;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +27,13 @@ public class OutputCSVWriter {
 	File dir;
 
 	String outputPath;
+  
 	/**
 	 * 
 	 * @param outputPath the file destination to output the file and name
 	 * @param wigleList the list of all wifi points which has been created
 	 */
+
 	public OutputCSVWriter(String files,String outputPath) {
 		this.files = files;
 		this.outputPath = outputPath;
@@ -41,7 +44,6 @@ public class OutputCSVWriter {
 		File fileToDelete = new File(outputPath+".csv");
 		fileToDelete.delete();
 	}
-
 	public List<List<LineOfFinalCSV>> sortAndMergeFiles() {
 		List<LineOfFinalCSV> allSortedPoints = new ArrayList<>(); //from all the files together
 		List<List<LineOfFinalCSV>> processedFile = new ArrayList<>();

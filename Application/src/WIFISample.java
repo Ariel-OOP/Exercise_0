@@ -23,6 +23,7 @@ public class WIFISample {
 	private String WIFI_Device;
 	
 	public WIFISample(String wIFI_MAC, String wIFI_SSID, String wIFI_FirstSeen, String wIFI_Channel, String wIFI_RSSI,
+
 			String wIFI_Lat, String wIFI_Lon, String wIFI_Alt, String wIFI_Type, String wIFI_Device) {
 		
 		WIFI_MAC = wIFI_MAC;
@@ -34,6 +35,7 @@ public class WIFISample {
 		WIFI_Lon = wIFI_Lon;
 		WIFI_Alt = wIFI_Alt;
 		WIFI_Type = wIFI_Type;
+
 		WIFI_Device = wIFI_Device;
 		
 		WIFI_Frequency = convertChannelToFrequency(WIFI_Channel);
@@ -64,6 +66,7 @@ public class WIFISample {
 
 		
 		return channelString;
+
 	}
 	
 	public String getWIFI_Device() {
@@ -166,6 +169,7 @@ public class WIFISample {
 
 	@Override
 	public String toString() {
+
 		return WIFI_MAC + "," + WIFI_SSID + "," + WIFI_Frequency + "," + WIFI_RSSI;
 	}
 	
