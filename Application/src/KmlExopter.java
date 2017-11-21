@@ -1,16 +1,9 @@
-package CommonsCSVTest.src;
+package Application.src;
 
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
-import de.micromata.opengis.kml.v_2_2_0.Placemark;
-import de.micromata.opengis.kml.v_2_2_0.TimeSpan;
-import org.apache.commons.csv.CSVParser;
 
 import java.io.*;
-import java.text.Normalizer;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by nissan on 11/17/2017.
