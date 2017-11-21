@@ -1,5 +1,6 @@
 package Application.src;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -8,15 +9,28 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+
+        //String folderPath="C:\\Users\\nissa\\Desktop\\Year 2\\OOP\\WigleFromPhone";
+        String folderPath="resources";
+
+        OutputCSVWriter outputCSVWriter = new OutputCSVWriter(folderPath,"testOutputCSV.csv");
+        List<List<LineOfFinalCSV>> processedFile =  outputCSVWriter.sortAndMergeFiles();
+        outputCSVWriter.ExportToCSV(processedFile);
+
         Scanner stdin = new Scanner(System.in);
-        System.out.println("enter 0,1");
+        System.out.println("This is a filter of points.\n"
+                + "* If you don't want any filter enter 0\n"
+                + "* If you want to filter by coordinates enter 1\n"
+                + "* If you want to filter by time enter 2\n"
+                + "* If you want to filter by ID enter 3\n"
+                + "===============================================\nEnter a number: ");
         int inputChoice = Integer.parseInt(stdin.nextLine());
         Filter filter = new Filter(inputChoice);
         if (filter.setFilter(stdin.nextLine()) )
             System.out.println("succesfully added filter");
         else
             System.out.println("failure to add filter");
-        KmlExopter kmlExopter = new KmlExopter("finalOutputCSV.csv","helloKML3.kml");
+        KmlExopter kmlExopter = new KmlExopter("testOutputCSV.csv","helloKML3.kml");
         System.out.println(kmlExopter.csvToKml(filter) );
 
     }
