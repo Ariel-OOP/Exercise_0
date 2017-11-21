@@ -1,6 +1,10 @@
+package CommonsCSVTest.src;
+
+import Old_Version.CSVReader;
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.Placemark;
+import org.apache.commons.csv.CSVParser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,6 +15,10 @@ import java.text.Normalizer;
  */
 public class JakTester {
     public static void main(String[] args) {
+        String csvPath = "finalOutput.csv";
+
+
+
         String[] strMat = {"nissan","WIFIOpen","9/9/9 13:34"};
         String description = "<name><![CDATA[" + strMat[0] + "]]></name>\n"
                 + "<description><![CDATA[#WiFi networks: <b>" + strMat[2] + "</b>\n<br>Date: " + strMat[1]
