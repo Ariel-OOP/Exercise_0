@@ -13,9 +13,11 @@ public class Main {
         int inputChoice = Integer.parseInt(stdin.nextLine());
         Filter filter = new Filter(inputChoice);
         if (filter.setFilter(stdin.nextLine()) )
-            System.out.println("succes");
+            System.out.println("succesfully added filter");
         else
-            System.out.println("failure");
+            System.out.println("failure to add filter");
+        KmlExopter kmlExopter = new KmlExopter("finalOutputCSV.csv","helloKML3.kml");
+        System.out.println(kmlExopter.csvToKml(filter) );
 
     }
 }
