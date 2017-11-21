@@ -13,6 +13,7 @@ public class Filter {
     enum Choice{
         NOFILTER,LOCATION,TIME,ID;
     }
+
     private final Choice choice;
     double[] locationObject;
     Date[] timeObject;
