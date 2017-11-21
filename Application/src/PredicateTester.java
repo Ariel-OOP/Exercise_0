@@ -1,5 +1,3 @@
-package Application.src;
-
 
 import java.util.List;
 import java.util.function.Predicate;

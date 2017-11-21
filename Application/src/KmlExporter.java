@@ -1,4 +1,3 @@
-package Application.src;
 
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
@@ -8,7 +7,7 @@ import java.io.*;
 /**
  * Created by nissan on 11/17/2017.
  */
-public class KmlExopter {
+public class KmlExporter {
     String csvFilePath, outKmlPathAndName;
     Kml kml;
     Document document;
@@ -18,7 +17,7 @@ public class KmlExopter {
      * @param csvFilePath the csv file, which is the source for our export
      * @param outKmlPathAndName the destination of the kml path and name to export
      */
-    public KmlExopter(String csvFilePath, String outKmlPathAndName) {
+    public KmlExporter(String csvFilePath, String outKmlPathAndName) {
         this.csvFilePath = csvFilePath;
         this.outKmlPathAndName = outKmlPathAndName;
     }
@@ -59,7 +58,7 @@ public class KmlExopter {
         kml.setFeature(document);
 
         try {
-            kml.marshal(new File("HelloKML353.kml"));
+            kml.marshal(new File(outKmlPathAndName));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false; //unsuccessful write
@@ -111,40 +110,8 @@ public class KmlExopter {
                     .createAndSetPoint().addToCoordinates(Double.parseDouble(CSVLine[3]),Double.parseDouble(CSVLine[2] ));
     }
 
-//    public static void main(String[] args) {
-//        String csvPath = "finalOutput.csv";
-//
-//        String[] strMat = {"nissan","WIFIOpen","9/9/9 13:34"};
-//        String description = "<name><![CDATA[" + strMat[0] + "]]></name>\n"
-//                + "<description><![CDATA[#WiFi networks: <b>" + strMat[2] + "</b>\n<br>Date: " + strMat[1]
-//                + "<table  border=\"1\" style=\"font-size:12px;\"> "
-//                + "<tr>\r\n" +
-//                "<td><b>Name</b></td>\r\n" +
-//                "<td><b>BSSID</b></td>\r\n" +
-//                "<td><b>Frequency</b></td>\r\n" +
-//                "<td><b>Signal</b></td>\r\n" +
-//                "</tr>"
-//                +"<tr>\r\n" + "<td>" + strMat[1] + "</td>\r\n" + "<td>" + strMat[2]
-//                + "</td>\r\n" + "<td>" + strMat[0] + "</td>\r\n" + "<td>" + strMat[2]
-//                + " </td>\r\n" + "</tr>";
-//
-//
-//        final Kml kml = new Kml();
-//        Document document = kml.createAndSetDocument();
-//
-//        document.createAndAddPlacemark().withId("Wifi 1").withDescription(description)
-//                .createAndSetPoint().addToCoordinates(-20.3978398, -43.5146653);
-//
-//        document.createAndAddPlacemark().withId("Wifi 2").withDescription(description)
-//                .createAndSetPoint().addToCoordinates(-20.388, -43.52);
-//
-//        kml.setFeature(document);
-//        try {
-//            kml.marshal(new File("HelloKML.kml"));
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
+
+
 //private static String theColorOfPoint(String str) {
 //
 //    int RXLnumber = Integer.parseInt(str);

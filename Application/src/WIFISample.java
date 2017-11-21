@@ -1,4 +1,3 @@
-package Application.src;
 /**
  * @author Moshe
  * @see https://examples.javacodegeeks.com/core-java/apache/commons/csv-commons/writeread-csv-files-with-apache-commons-csv-example/
