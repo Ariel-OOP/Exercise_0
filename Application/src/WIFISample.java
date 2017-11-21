@@ -1,5 +1,4 @@
 package Application.src;
-
 /**
  * @author Moshe
  * @see https://examples.javacodegeeks.com/core-java/apache/commons/csv-commons/writeread-csv-files-with-apache-commons-csv-example/
@@ -24,7 +23,9 @@ public class WIFISample {
 	private String WIFI_Device;
 	
 	public WIFISample(String wIFI_MAC, String wIFI_SSID, String wIFI_FirstSeen, String wIFI_Channel, String wIFI_RSSI,
-			String wIFI_Lat, String wIFI_Lon, String wIFI_Alt, String wIFI_Type) {
+
+			String wIFI_Lat, String wIFI_Lon, String wIFI_Alt, String wIFI_Type, String wIFI_Device) {
+		
 		WIFI_MAC = wIFI_MAC;
 		WIFI_SSID = wIFI_SSID;
 		WIFI_FirstSeen = wIFI_FirstSeen;
@@ -34,12 +35,38 @@ public class WIFISample {
 		WIFI_Lon = wIFI_Lon;
 		WIFI_Alt = wIFI_Alt;
 		WIFI_Type = wIFI_Type;
-		WIFI_Frequency = convertChannelToFrequency();
+
+		WIFI_Device = wIFI_Device;
+		
+		WIFI_Frequency = convertChannelToFrequency(WIFI_Channel);
 	}
 
-	private String convertChannelToFrequency() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getWIFI_Frequency() {
+		return WIFI_Frequency;
+	}
+
+	public void setWIFI_Frequency(String wIFI_Frequency) {
+		WIFI_Frequency = wIFI_Frequency;
+	}
+
+	private String convertChannelToFrequency(String wIFI_Channel) {
+		int i;
+		String channelString = "";
+		int channel = Integer.parseInt(wIFI_Channel);
+		
+		if(channel >= 1 && channel <= 14)
+		{
+			i = (channel - 1) * 5 + 2412;
+			channelString = i + "";
+		}else if(channel >= 36 && channel <= 165)
+		{
+			i = (channel - 34) * 5 + 5170;
+			channelString = i + "";
+		}	
+
+		
+		return channelString;
+
 	}
 	
 	public String getWIFI_Device() {
@@ -142,11 +169,8 @@ public class WIFISample {
 
 	@Override
 	public String toString() {
-		return "WIFISample [WIFI_MAC=" + WIFI_MAC + ", WIFI_SSID=" + WIFI_SSID + ", WIFI_Channel=" + WIFI_Channel
-				+ ", WIFI_RSSI=" + WIFI_RSSI + "]";
-	}
 
-	
-	
+		return WIFI_MAC + "," + WIFI_SSID + "," + WIFI_Frequency + "," + WIFI_RSSI;
+	}
 	
 }
