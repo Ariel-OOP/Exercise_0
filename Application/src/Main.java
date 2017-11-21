@@ -1,4 +1,3 @@
-package Application.src;
 
 import java.util.List;
 import java.util.Scanner;
@@ -9,8 +8,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
-        //String folderPath="C:\\Users\\nissa\\Desktop\\Year 2\\OOP\\WigleFromPhone";
         String folderPath="resources";
 
         OutputCSVWriter outputCSVWriter = new OutputCSVWriter(folderPath,"testOutputCSV.csv");
@@ -30,8 +27,8 @@ public class Main {
             System.out.println("succesfully added filter");
         else
             System.out.println("failure to add filter");
-        KmlExopter kmlExopter = new KmlExopter("testOutputCSV.csv","helloKML3.kml");
-        System.out.println(kmlExopter.csvToKml(filter) );
+        KmlExporter kmlExporter = new KmlExporter("testOutputCSV.csv","resources\\helloKML1.kml");
+        System.out.println(kmlExporter.csvToKml(filter) );
 
     }
 }
