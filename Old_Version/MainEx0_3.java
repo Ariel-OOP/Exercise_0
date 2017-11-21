@@ -21,8 +21,7 @@ public class MainEx0_3 {
 
 		
 	}
-	
-	
+
 	/**
 	 * the function asks for a int as a choice in our main menu to either filter by ID,Time or Cord.
 	 * @return an int which is the choice of the user
