@@ -23,10 +23,10 @@ public class Main {
                 + "===============================================\nEnter a number: ");
         int inputChoice = Integer.parseInt(stdin.nextLine());
         Filter filter = new Filter(inputChoice);
-        if (filter.setFilter(stdin.nextLine()) )
-            System.out.println("succesfully added filter");
-        else
-            System.out.println("failure to add filter");
+        do{
+            LineFilters.printInput(inputChoice);
+        }while (!filter.setFilter(stdin.nextLine()));
+
         KmlExporter kmlExporter = new KmlExporter("testOutputCSV.csv","resources\\helloKML1.kml");
         System.out.println(kmlExporter.csvToKml(filter) );
 

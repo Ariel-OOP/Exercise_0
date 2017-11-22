@@ -40,6 +40,7 @@ public class KmlExporter {
 
         Icon iconRed = new Icon();
         iconRed.setHref("http://maps.google.com/mapfiles/kml/paddle/red-circle.png");
+//        iconRed.setHref("http://files.softicons.com/download/game-icons/super-mario-icons-by-sandro-pereira/png/256/Retro%20Mario%202.png");
         IconStyle iconStyleRed =new IconStyle();
         iconStyleRed.setScale(1.0);
         iconStyleRed.setIcon(iconRed);
