@@ -1,8 +1,11 @@
 
-import de.micromata.opengis.kml.v_2_2_0.Document;
-import de.micromata.opengis.kml.v_2_2_0.Kml;
+import de.micromata.opengis.kml.v_2_2_0.*;
 
 import java.io.*;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by nissan on 11/17/2017.
@@ -25,6 +28,33 @@ public class KmlExporter {
     public boolean csvToKml(Filter filter) {
         kml = new Kml();
         document = kml.createAndSetDocument();
+
+
+        //TODO added
+        IconStyle iconStyle =new IconStyle();
+        Icon icon = new Icon();
+        icon.setHref("http://maps.google.com/mapfiles/kml/paddle/grn-circle.png");
+        iconStyle.setScale(1.0);
+        iconStyle.setIcon(icon);
+        document.createAndAddStyle().withId("green").setIconStyle(iconStyle);
+
+        Icon iconRed = new Icon();
+        iconRed.setHref("http://maps.google.com/mapfiles/kml/paddle/red-circle.png");
+//        iconRed.setHref("http://files.softicons.com/download/game-icons/super-mario-icons-by-sandro-pereira/png/256/Retro%20Mario%202.png");
+        IconStyle iconStyleRed =new IconStyle();
+        iconStyleRed.setScale(1.0);
+        iconStyleRed.setIcon(iconRed);
+        document.createAndAddStyle().withId("red").setIconStyle(iconStyleRed);
+
+        Icon iconYellow = new Icon();
+        iconYellow.setHref("http://maps.google.com/mapfiles/kml/paddle/ylw-circle.png");
+        IconStyle iconStyleYellow =new IconStyle();
+        iconStyleYellow.setScale(1.0);
+        iconStyleYellow.setIcon(iconYellow);
+        document.createAndAddStyle().withId("yellow").setIconStyle(iconStyleYellow);
+
+
+
         //TODO see if this helps kml header
 
         BufferedReader br = null;
@@ -69,7 +99,7 @@ public class KmlExporter {
         private void printPointOnMap(String[] CSVLine) {
             String onePoint = "";
             onePoint ="<name><![CDATA[" + CSVLine[0] + "]]></name>"
-                    + "<description><![CDATA[#WiFi networks: <b>" + CSVLine[5] + "</b>\n<br>Date: " + CSVLine[0]
+                    + "<description><![CDATA[#WiFi networks: <b>" +"#WiFi networks: "+ CSVLine[5] + "</b>\n<br>Date: " + CSVLine[0]
                     + "<table  border=\"1\" style=\"font-size:12px;\"> "
                     + "<tr>" +
                     "<td><b>Name</b></td>" +
@@ -104,13 +134,57 @@ public class KmlExporter {
 
 
             //TODO test if withId is null wht happens
-            document.createAndAddPlacemark().withId(CSVLine[7])
+            document.createAndAddPlacemark().withTimePrimitive(createTimeStamp(CSVLine[0]))
+                    .withName(CSVLine[6])
+                    .withStyleUrl("#"+colorOfPoint(CSVLine[9]))
 //                    .withStyleUrl("http://maps.google.com/mapfiles/ms/icons/green-dot.png")
                     .withDescription(onePoint)
                     .createAndSetPoint().addToCoordinates(Double.parseDouble(CSVLine[3]),Double.parseDouble(CSVLine[2] ));
     }
 
+    private static String colorOfPoint(String str) {
 
+        int RXLnumber = Integer.parseInt(str);
+        String color = "";
+
+        if(RXLnumber <= 0 && RXLnumber > -70)
+        {
+            color = "green";
+        }
+        else if(RXLnumber <= -70 && RXLnumber > -80)
+        {
+            color = "yellow";
+        }
+        else
+            color = "red";
+
+
+        return color;
+    }
+
+    public TimeStamp createTimeStamp(String time) {
+        String dateFormatFile = "yyyy-MM-dd hh:mm:ss";
+        Date lineDate=null;
+        try {
+            if (!time.isEmpty() )
+                lineDate = new SimpleDateFormat(dateFormatFile).parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String yearstr = lineDate.getYear()+"/";
+        String monthstr = lineDate.getMonth()+"/";
+        String daystr = lineDate.getDate()+"/";
+
+
+        String dateString = (lineDate.getYear()+1900)+"-"+(lineDate.getMonth()+1)+ "-" +(lineDate.getDate())
+                +"T"+lineDate.getHours()+":"+lineDate.getMinutes()+":"
+                +((lineDate.getSeconds()<10)? "0" : "")+lineDate.getSeconds()+"Z";
+
+        TimeStamp timeStamp = new TimeStamp ();
+        timeStamp.setWhen(dateString);
+
+        return timeStamp;
+    }
 
 //private static String theColorOfPoint(String str) {
 //

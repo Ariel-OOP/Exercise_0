@@ -26,4 +26,17 @@ public class LineFilters {
         return false;
     }
 
+    public static void printInput(int choice){
+        switch (choice){
+            case 1: System.out.println("enter the following format:  32.009,43.99 55");
+                    break;
+            case 2: System.out.println("enter the following format:  32.009,43.99 55");
+                     break;
+            case 3: System.out.println("enter the following format:  32.009,43.99 55");
+                    break;
+            case 0:
+                     break;
+            default: System.out.println("incorrect input, try again");
+        }
+    }
 }
