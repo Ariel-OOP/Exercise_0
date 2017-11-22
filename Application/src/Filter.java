@@ -74,6 +74,11 @@ public class Filter {
                     + "[ ]{1}[\\p{Digit}]{2}[:]{1}[\\p{Digit}]{2}"/*Time in format hh:mm*/) )
             {
                 correctFormat =true;
+                String str = splitDates[0];
+                if (splitDates[0].contains("/") || splitDates[1].contains("/")){
+                    splitDates[0]=splitDates[0].replaceAll("/","-");
+                    splitDates[1]=splitDates[1].replaceAll("/","-");
+                }
                 timeObject = new Date[2];
                 try {
                     Date startDate = new SimpleDateFormat(dateFormat).parse(splitDates[0]);
@@ -139,7 +144,8 @@ public class Filter {
         switch(choice) {
             case NOFILTER: return true;
             case LOCATION:
-                return LineFilters.distFrom(locationObject[0],locationObject[1],Double.parseDouble(lineProperties[2]),Double.parseDouble(lineProperties[3]),locationObject[3]);
+                //switched the order of the coordinates
+                return LineFilters.distFrom(locationObject[1],locationObject[0],Double.parseDouble(lineProperties[2]),Double.parseDouble(lineProperties[3]),locationObject[2]);
             case TIME:
                 String strDateFromFile = "";
                 String dateFormatFile = "dd/MM/yyyy hh:mm";

@@ -28,7 +28,10 @@ public class Main {
         }while (!filter.setFilter(stdin.nextLine()));
 
         KmlExporter kmlExporter = new KmlExporter("testOutputCSV.csv","resources\\helloKML1.kml");
-        System.out.println(kmlExporter.csvToKml(filter) );
+        if(kmlExporter.csvToKml(filter) )
+            System.out.println("successful export");
+        else
+            System.out.println("failure to export");
 
     }
 }
