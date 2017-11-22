@@ -98,7 +98,7 @@ public class KmlExporter {
         private void printPointOnMap(String[] CSVLine) {
             String onePoint = "";
             onePoint ="<name><![CDATA[" + CSVLine[0] + "]]></name>"
-                    + "<description><![CDATA[#WiFi networks: <b>" + CSVLine[5] + "</b>\n<br>Date: " + CSVLine[0]
+                    + "<description><![CDATA[#WiFi networks: <b>" +"#WiFi networks: "+ CSVLine[5] + "</b>\n<br>Date: " + CSVLine[0]
                     + "<table  border=\"1\" style=\"font-size:12px;\"> "
                     + "<tr>" +
                     "<td><b>Name</b></td>" +
@@ -176,7 +176,8 @@ public class KmlExporter {
 
 
         String dateString = (lineDate.getYear()+1900)+"-"+(lineDate.getMonth()+1)+ "-" +(lineDate.getDate())
-                +"T"+lineDate.getHours()+":"+lineDate.getMinutes()+":"+lineDate.getSeconds()+"Z";
+                +"T"+lineDate.getHours()+":"+lineDate.getMinutes()+":"
+                +((lineDate.getSeconds()<10)? "0" : "")+lineDate.getSeconds()+"Z";
 
         TimeStamp timeStamp = new TimeStamp ();
         timeStamp.setWhen(dateString);
