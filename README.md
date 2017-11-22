@@ -10,6 +10,10 @@ It is recommended to change **outputKmlpath** to where you would like to export 
 
 
 # General Description <br />
-The project is a java program. The program is divided into two parts,<br />
+This project is written in java. The program is divided into two parts,<br />
 <br />
-**The First part,** receives a CSV type file that contains WIFI points that were sampled and identify each point (For example: time, location, MAC address, signal strenght and ect.) and sorts each time period and location its points by its strength and takes the 10 strongest. At the end of the program it exports a new CSV file which each a row shows at the most 10 WIFI points with the following parameters SSID,BSSID, Frequncy, Signal. Each row is the same time and location.
+**The First part,** receives a CSV type file that was exported from the Wigle app :iphone:. The file contains WIFI points that were sampled and identify each point (For example: time, location, MAC address, signal strenght and ect.) and sorts each time period and location its points by its strength and takes the 10 strongest. At the end of the program it exports a new CSV file which each a row shows at the most 10 WIFI points with the following parameters SSID,BSSID, Frequncy, Signal. Each row is the same time and location.
+
+**The Second part,** recevies the file that was exported from the first part (or similiar file) and filters it using three criterias: time,location and ID. <br />
+
+1.  Time, the program asks the user to enter two dates, a start date and hour and a end date and hour.
