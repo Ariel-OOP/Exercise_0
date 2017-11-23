@@ -5,7 +5,9 @@ import java.util.Date;
 //Todo remove scanner
 
 /**
- * Created by Nissan on 11/21/2017.
+ * Filter is the class responsible for generating the proper filter accordingly to be used later on
+ * to filter the lines in the CSV file that was generated from our program
+ * @author nissan
  */
 public class Filter {
     enum Choice{
@@ -18,7 +20,10 @@ public class Filter {
     String idObject;
     String dateFormat = "dd-MM-yyyy hh:mm";
 
-
+    /**
+     * The constructor recives a int which will set up the filter accordingly
+     * @param numChoice is the choice from the user to pick a filter from the menu
+     */
     public Filter(int numChoice) {
         switch (numChoice){
             case 0:
@@ -39,7 +44,11 @@ public class Filter {
         }
     }
 
-    //TODO fill out
+    /**
+     *
+     * @param input is the user input asked from the console to the appropriate filter.
+     * @return return true if the input was in the correct format and the filter was set.
+     */
     public boolean setFilter(String input){
         boolean isCorrectInput;
 

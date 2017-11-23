@@ -44,7 +44,7 @@ public class WigleFileReader {
 
 	/**
 	 * 
-	 * @param fileName
+	 * @param fileName the file name that will worked on.
 	 */
 	public WigleFileReader(String fileName)
 	{
@@ -187,6 +187,7 @@ public class WigleFileReader {
 
 	/**
 	 * getWigleList will return the final sorted list of wifi includes more than 10
+	 * @return returns a List of LineOfFinalCSV.
 	 */
 	public List<LineOfFinalCSV> getWigleList() {
 		return allWifiPoints;

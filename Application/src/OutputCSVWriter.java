@@ -29,8 +29,8 @@ public class OutputCSVWriter {
   
 	/**
 	 * 
-	 * @param outputPath the file destination to output the file and name
-	 * @param wigleList the list of all wifi points which has been created
+	 * @param files the file destination to output the file and name
+	 * @param outputPath the output path
 	 */
 
 	public OutputCSVWriter(String files,String outputPath) {

@@ -2,9 +2,22 @@
 import java.util.Date;
 
 /**
- * Created by Nissan on 11/21/2017.
+ * A collection of static functions that are responsible to check if the line that was read in file
+ * fulfills the filter and its requirements.
+ * It also contains functions that print if the user input was correct when generating a filter.
  */
+
 public class LineFilters {
+
+    /**
+     *
+     * @param lat1 the latitude from the file
+     * @param lng1 the longitude from the file
+     * @param lat2 the latitude from the user
+     * @param lng2  the longitude from the file
+     * @param radius the user given radius
+     * @return true if the given WIFI point is in the filters radius
+     */
     public static boolean distFrom(double lat1, double lng1, double lat2, double lng2, double radius) {
         //
 
@@ -20,6 +33,13 @@ public class LineFilters {
         return dist <= radius;
     }
 
+    /**
+     *
+     * @param startDate is from the users date
+     * @param endDate is from the users date
+     * @param inputDate is from the WIFI pointsq date
+     * @return true if the inputDate is in bounds of the start date and end date.
+     */
     public static boolean isDateInBounds(Date startDate, Date endDate, long inputDate){
         long test = startDate.getTime();
         long test2= inputDate-startDate.getTime();
@@ -29,6 +49,10 @@ public class LineFilters {
         return false;
     }
 
+    /**
+     * prints a message to the user to either enter or renter a input that was incorrect
+     * @param choice is the choice of filter to be used
+     */
     public static void printInput(int choice){
         switch (choice){
             case 1: System.out.println("enter the LOCATION in the following format: \n32.009,43.99 55");
