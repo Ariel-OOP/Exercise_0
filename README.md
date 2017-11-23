@@ -1,7 +1,7 @@
 # General Description <br />
 This project is written in java. The program is divided into two parts:<br />
 <br />
-**The First part,** receives a CSV type file that was exported from the Wigle app :iphone:. The file contains WIFI points that were sampled and identify each point (For example: time, location, MAC address, signal strenght and ect.) and sorts each time period and location its points by its strength and takes the 10 strongest. At the end of the program it exports a new CSV file which each a row shows at the most 10 WIFI points with the following parameters SSID,BSSID, Frequncy, Signal. Each row is the same time and location.
+**The First part,** receives a CSV type file that was exported from the Wigle app :iphone:. The file contains WIFI points that were sampled and identify each point (For example: time, location, MAC address, signal strenght and ect.) and sorts each time period and location its points by its strength :signal_strength: and takes the 10 strongest. At the end of the program it exports a new CSV file which each a row shows at the most 10 WIFI points with the following parameters SSID,BSSID, Frequncy, Signal. Each row is the same time and location.
 
 **The Second part,** recevies the file that was exported from the first part (or similiar file) and filters it using three criteria: time,location and ID. <br />
 
@@ -13,10 +13,14 @@ the given radius of the coordinates from the CSV file.
 <br />
 After the filteration is complete the program will export a KML file (it is similar to an XML file) with all the related WIFI points. The KML file can be opened using Google Earth.
 
+### The program uses following api/libraries: ###
+  1. Commons CSV 1.5 api
+  2. Jak kml 2.2 api
+  3. Junit 4 
 
 # Instructions <br />
 
 1. Clone repository and add the jars in the resources folder to libary path.
-2. Run the Main.java in the Application folder.
-3. You can add your own CSV file from the wigle app to the FileResources folder.
+2. Run the Main.java in the Application/src folder.
+3. You can add your own CSV file from the wigle app to the FileResources folder:open_file_folder::.
 4. Enjoy!!!
