@@ -27,7 +27,7 @@ public class WIFISample {
 		
 		WIFI_MAC = wIFI_MAC;
 		WIFI_SSID = wIFI_SSID;
-		WIFI_FirstSeen = wIFI_FirstSeen;
+		WIFI_FirstSeen = DateParser.setCorrectDateFormat(wIFI_FirstSeen);
 		WIFI_Channel = wIFI_Channel;
 		WIFI_RSSI = wIFI_RSSI;
 		WIFI_Lat = wIFI_Lat;
@@ -102,7 +102,7 @@ public class WIFISample {
 
 
 	public void setWIFI_FirstSeen(String wIFI_FirstSeen) {
-		WIFI_FirstSeen = wIFI_FirstSeen;
+		WIFI_FirstSeen = DateParser.setCorrectDateFormat(wIFI_FirstSeen);
 	}
 
 
@@ -113,6 +113,7 @@ public class WIFISample {
 
 	public void setWIFI_Channel(String wIFI_Channel) {
 		WIFI_Channel = wIFI_Channel;
+		setWIFI_FirstSeen(convertChannelToFrequency(wIFI_Channel));
 	}
 
 

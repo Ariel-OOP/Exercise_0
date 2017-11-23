@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        String folderPath="resources";
+        String folderPath="FileResources";
 
         OutputCSVWriter outputCSVWriter = new OutputCSVWriter(folderPath,"testOutputCSV.csv");
-        List<List<LineOfFinalCSV>> processedFile =  outputCSVWriter.sortAndMergeFiles();
+        List<List<WifiPointsTimePlace>> processedFile =  outputCSVWriter.sortAndMergeFiles();
         outputCSVWriter.ExportToCSV(processedFile);
 
         Scanner stdin = new Scanner(System.in);

@@ -26,11 +26,11 @@ public class OutputCSVWriter {
 	File dir;
 
 	String outputPath;
-  
+
 	/**
-	 * 
-	 * @param outputPath the file destination to output the file and name
-	 * @param wigleList the list of all wifi points which has been created
+	 *
+	 * @param files the file destination to output the file and name
+	 * @param outputPath
 	 */
 
 	public OutputCSVWriter(String files,String outputPath) {
@@ -38,14 +38,14 @@ public class OutputCSVWriter {
 		this.outputPath = outputPath;
 		dir = new File(files);		//	The current file
 
-
 		//Deletes file if it exists
 		File fileToDelete = new File(outputPath+".csv");
 		fileToDelete.delete();
+
 	}
-	public List<List<LineOfFinalCSV>> sortAndMergeFiles() {
-		List<LineOfFinalCSV> allSortedPoints = new ArrayList<>(); //from all the files together
-		List<List<LineOfFinalCSV>> processedFile = new ArrayList<>();
+	public List<List<WifiPointsTimePlace>> sortAndMergeFiles() {
+		List<WifiPointsTimePlace> allSortedPoints = new ArrayList<>(); //from all the files together
+		List<List<WifiPointsTimePlace>> processedFile = new ArrayList<>();
 		WigleFileReader wigleFileReader;
 
 		for (File file : dir.listFiles()) {	
@@ -54,7 +54,7 @@ public class OutputCSVWriter {
 			if (!(file.getName().toLowerCase().endsWith(".csv"))){
 				System.out.println(file.getName()+" is an incorrect file type in the folder");
 				System.out.println("the file was not added to the csv file error 404");
-				//continue;
+				continue;
 			}
 			else {
 				wigleFileReader = new WigleFileReader(file.getPath());
@@ -66,7 +66,7 @@ public class OutputCSVWriter {
 		return processedFile;
 	}
 
-	public void ExportToCSV(List<List<LineOfFinalCSV>> fileAfterSortintAndMerging) {
+	public void ExportToCSV(List<List<WifiPointsTimePlace>> fileAfterSortintAndMerging) {
 
 		FileWriter fileWriter = null;
 
@@ -88,8 +88,8 @@ public class OutputCSVWriter {
 
 			//Write a new student object list to the CSV file
 
-			for (List<LineOfFinalCSV> file : fileAfterSortintAndMerging) {
-				for(LineOfFinalCSV line : file)
+			for (List<WifiPointsTimePlace> file : fileAfterSortintAndMerging) {
+				for(WifiPointsTimePlace line : file)
 					csvFilePrinter.printRecord(line.getWifiPoints());
 			}
 
