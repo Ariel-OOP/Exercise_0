@@ -1,7 +1,8 @@
 /**
  * @author Moshe
- * @see https://examples.javacodegeeks.com/core-java/apache/commons/csv-commons/writeread-csv-files-with-apache-commons-csv-example/
+ * some aspects based on:  http://examples.javacodegeeks.com/core-java/apache/commons/csv-commons/writeread-csv-files-with-apache-commons-csv-example/
  */
+
 public class WIFISample {
 	
 	//WIFI attributes

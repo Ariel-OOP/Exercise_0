@@ -9,8 +9,6 @@ import java.io.IOException;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
-
-
 public class OutputCSVWriter {
 
 	//Delimiter used in CSV file
@@ -28,9 +26,9 @@ public class OutputCSVWriter {
 	String outputPath;
 
 	/**
-	 *
+	 * 
 	 * @param files the file destination to output the file and name
-	 * @param outputPath
+	 * @param outputPath the output path
 	 */
 
 	public OutputCSVWriter(String files,String outputPath) {

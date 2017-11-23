@@ -8,7 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by nissan on 11/17/2017.
+ * The class is responsible for exporting a KML file from our converted CSV file
+ * that was generated from the outputCSVWriter.ExportToCSV(processedFile) line
+ * @author nissan
  */
 public class KmlExporter {
     String csvFilePath, outKmlPathAndName;
@@ -25,6 +27,11 @@ public class KmlExporter {
         this.outKmlPathAndName = outKmlPathAndName;
     }
 
+    /**
+     *
+     * @param filter is the filter object from the Filter class that generated the filter according to its user input.
+     * @return true is export was successful.
+     */
     public boolean csvToKml(Filter filter) {
         kml = new Kml();
         document = kml.createAndSetDocument();
@@ -162,7 +169,7 @@ public class KmlExporter {
         return color;
     }
 
-    public TimeStamp createTimeStamp(String time) {
+    private TimeStamp createTimeStamp(String time) {
         String dateFormatFile = "yyyy-MM-dd hh:mm:ss";
         Date lineDate=null;
         try {
@@ -186,24 +193,5 @@ public class KmlExporter {
         return timeStamp;
     }
 
-//private static String theColorOfPoint(String str) {
-//
-//    int RXLnumber = Integer.parseInt(str);
-//    String color = "";
-//
-//    if(RXLnumber <= 0 && RXLnumber > -70)
-//    {
-//        color = "green";
-//    }
-//    else if(RXLnumber <= -70 && RXLnumber > -80)
-//    {
-//        color = "yellow";
-//    }
-//    else
-//        color = "red";
-//
-//
-//    return color;
-//}
 
 }

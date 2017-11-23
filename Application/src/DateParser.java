@@ -54,7 +54,6 @@ public class DateParser {
 			String remainderDate = newDate.substring(secondHyphen + 1, newDate.length());
 			newDate = d + "-" + m + "-" + remainderDate;
 		}
-
     	newDate += " " + time;
     	
 		return newDate;
@@ -88,5 +87,4 @@ public class DateParser {
         }
         return date != null;
     }
-
 }
