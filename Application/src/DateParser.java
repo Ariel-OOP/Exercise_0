@@ -5,6 +5,7 @@ import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 
 /**
+ * @author Shir
  * https://stackoverflow.com/questions/13245490/check-how-many-times-string-contains-character-g-in-eligible-string
  */
 public class DateParser {
