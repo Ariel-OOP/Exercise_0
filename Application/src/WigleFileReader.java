@@ -21,7 +21,7 @@ public class WigleFileReader {
 	private  final String [] FILE_HEADER_MAPPING = {"MAC","SSID","AuthMode","FirstSeen","Channel","RSSI","CurrentLatitude","CurrentLongitude","AltitudeMeters","AccuracyMeters","Type"};
 	//A list of all wifi points
 
-	private List<LineOfFinalCSV> allWifiPoints; 
+	private List<WifiPointsTimePlace> allWifiPoints;
   
 	//WIFI attributes
 	private final String WIFI_MAC = "MAC";
@@ -82,6 +82,8 @@ public class WigleFileReader {
 			firstLine_Titles = inStream.readLine().split(",");
 
 			correctHeaderAndTitle = checkTitle(firstLine_Titles) && checkHeader(firstLine_DeviceAttributes);
+			if(!correctHeaderAndTitle)
+				throw new Exception("This is not correct CSV file");
 
 			//Get the device name from the header
 			deviceName = ExtractDeviceattribute(firstLine_DeviceAttributes[5]);
@@ -129,10 +131,7 @@ public class WigleFileReader {
 					PointsOfOneMinute.add(wifiSample);		
 				}
 			}
-
-			if (correctHeaderAndTitle) {
-				allWifiPoints.add(takeTopTenPoints(PointsOfOneMinute));
-			}
+			csvFileParser.close();
 		} 
 		catch (Exception e) {
 			System.out.println("Error in CsvFileReader !!!");
@@ -140,18 +139,18 @@ public class WigleFileReader {
 		} finally {
 			try {
 				fileReader.close();
-				csvFileParser.close();
+				//csvFileParser.close();
 			} catch (IOException e) {
-				System.out.println("Error while closing fileReader/csvFileParser !!!");
+				System.out.println("Error while closing fileReader/csvFileParser Becouse that your file is incorrect !!!");
 				e.printStackTrace();
 			}
 		}
 	}
 
-	private LineOfFinalCSV takeTopTenPoints(List<WIFISample> pointsOfOneMinute) {
+	private WifiPointsTimePlace takeTopTenPoints(List<WIFISample> pointsOfOneMinute) {
 		//Sorting 10 best wifi signals
 
-		LineOfFinalCSV line = new LineOfFinalCSV();
+		WifiPointsTimePlace line = new WifiPointsTimePlace();
 
 		Collections.sort(pointsOfOneMinute, new Comparator<WIFISample>() {
 			@Override
@@ -163,10 +162,9 @@ public class WigleFileReader {
 		//topTenPoints.clear();
 		int tenOrLessPoints = 0;
 
-		line = new LineOfFinalCSV();
-		//TODO check GSM
+		line = new WifiPointsTimePlace();
 		for(WIFISample wifiSamp : pointsOfOneMinute) {
-			if (tenOrLessPoints < 10) {
+			if (tenOrLessPoints < 10/* && wifiSamp.getWIFI_Type().equals("WIFI")*/) {
 				line.addPoint(wifiSamp);
 				//topTenPoints.add(wifiSamp);
 				tenOrLessPoints++;
@@ -189,7 +187,7 @@ public class WigleFileReader {
 	 * getWigleList will return the final sorted list of wifi includes more than 10
 	 * @return returns a List of LineOfFinalCSV.
 	 */
-	public List<LineOfFinalCSV> getWigleList() {
+	public List<WifiPointsTimePlace> getWigleList() {
 		return allWifiPoints;
 	}
 

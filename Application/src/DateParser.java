@@ -29,7 +29,6 @@ public class DateParser {
 		return DateParser.correctDateFormat;
 	}
 
-
 	/**
 	 *
 	 * @param date
@@ -47,16 +46,14 @@ public class DateParser {
     	boolean M_ddFormat1 = isValidFormat("M-dd-yyyy", newDate);
 		boolean MM_dFormat2 = isValidFormat("MM-d-yyyy", newDate);
 		//boolean M_dFormat3 = isValidFormat("M-d-yyyy hh:mm:ss", correctFormatDate);
-    	if(MM_ddFormat || M_ddFormat1 || MM_dFormat2 )
-    	{
-    		int firstHyphen = newDate.indexOf("-");
-			int secondHyphen = newDate.indexOf("-",firstHyphen + 1);
+    	if(MM_ddFormat || M_ddFormat1 || MM_dFormat2 ) {
+			int firstHyphen = newDate.indexOf("-");
+			int secondHyphen = newDate.indexOf("-", firstHyphen + 1);
 			String m = newDate.substring(0, firstHyphen);
-    		String d = newDate.substring(firstHyphen + 1, secondHyphen);
-    		String remainderDate = newDate.substring(secondHyphen + 1, newDate.length());
-    		newDate = d + "-" + m + "-" + remainderDate;
-    	}
-
+			String d = newDate.substring(firstHyphen + 1, secondHyphen);
+			String remainderDate = newDate.substring(secondHyphen + 1, newDate.length());
+			newDate = d + "-" + m + "-" + remainderDate;
+		}
     	newDate += " " + time;
     	
 		return newDate;
@@ -90,5 +87,4 @@ public class DateParser {
         }
         return date != null;
     }
-
 }
