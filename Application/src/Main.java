@@ -15,13 +15,8 @@ public class Main {
         outputCSVWriter.ExportToCSV(processedFile);
 
         Scanner stdin = new Scanner(System.in);
-        System.out.println("This is a filter of points.\n"
-                + "* If you don't want any filter enter 0\n"
-                + "* If you want to filter by coordinates enter 1\n"
-                + "* If you want to filter by time enter 2\n"
-                + "* If you want to filter by ID enter 3\n"
-                + "===============================================\nEnter a number: ");
-        int inputChoice = Integer.parseInt(stdin.nextLine());
+        char c = printMenu();
+        int inputChoice = Integer.parseInt(c+"");
         Filter filter = new Filter(inputChoice);
         do{
             LineFilters.printInput(inputChoice);
@@ -33,5 +28,22 @@ public class Main {
         else
             System.out.println("failure to export");
 
+    }
+
+    private static char printMenu() {
+        char c;
+        Scanner stdin = new Scanner(System.in);
+        System.out.println("=========================================\nThis is a filter of points.\n"
+                + "* If you don't want any filter enter 0\n"
+                + "* If you want to filter by coordinates enter 1\n"
+                + "* If you want to filter by time enter 2\n"
+                + "* If you want to filter by ID enter 3\n"
+                + "===============================================\nEnter a number: ");
+
+        do {
+            c = stdin.nextLine().charAt(0);
+            if (c>51 || c<48) System.out.println("Not valid choice, please choose again\n");
+        }while(c>58 || c<48);
+        return c;
     }
 }
