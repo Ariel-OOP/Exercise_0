@@ -13,7 +13,7 @@ the given radius of the coordinates from the CSV file.
 <br />
 After the filteration is complete the program will export a KML file (it is similar to an XML file) with all the related WIFI points. The KML file can be opened using Google Earth.
 
-### The program uses following api\libraries: ###
+### The program uses following api/libraries: ###
   1. Commons CSV 1.5 api
   2. Jak kml 2.2 api
   3. Junit 4 
