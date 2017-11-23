@@ -29,7 +29,6 @@ public class DateParser {
 		return DateParser.correctDateFormat;
 	}
 
-
 	/**
 	 *
 	 * @param date
