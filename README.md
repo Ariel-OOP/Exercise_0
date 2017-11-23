@@ -14,3 +14,9 @@ the given radius of the coordinates from the CSV file.
 After the filteration is complete the program will export a KML file (it is similar to an XML file) with all the related WIFI points. The KML file can be opened using Google Earth.
 
 
+# Instructions <br />
+
+1. Clone repository and add the jars in the resources folder to libary path.
+2. Run the Main.java in the Application folder.
+3. You can add your own CSV file from the wigle app to the FileResources folder.
+4. Enjoy!!!
