@@ -84,8 +84,6 @@ public class OutputCSVWriter {
 			//Create CSV file header
 			csvFilePrinter.printRecord(FILE_HEADER);
 
-			//Write a new student object list to the CSV file
-
 			for (List<WifiPointsTimePlace> file : fileAfterSortintAndMerging) {
 				for(WifiPointsTimePlace line : file)
 					csvFilePrinter.printRecord(line.getWifiPoints());

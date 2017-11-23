@@ -114,7 +114,7 @@ public class WIFISample {
 
 	public void setWIFI_Channel(String wIFI_Channel) {
 		WIFI_Channel = wIFI_Channel;
-		setWIFI_FirstSeen(convertChannelToFrequency(wIFI_Channel));
+		setWIFI_Frequency(convertChannelToFrequency(wIFI_Channel));
 	}
 
 
