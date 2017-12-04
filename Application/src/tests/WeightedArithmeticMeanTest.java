@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
@@ -5,5 +7,11 @@ import static org.junit.Assert.*;
  */
 public class WeightedArithmeticMeanTest {
 
-
+    @Test
+    public void getWAMTest() throws Exception {
+        WeightedArithmeticMean weightedArithmeticMean = new WeightedArithmeticMean();
+        assertEquals(weightedArithmeticMean.getWAM().getWIFI_Lat(),   );
+        assertEquals(weightedArithmeticMean.getWAM().getWIFI_Lon(),   );
+        assertEquals(weightedArithmeticMean.getWAM().getWIFI_Alt(),   );
+    }
 }
