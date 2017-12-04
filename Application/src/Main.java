@@ -11,8 +11,10 @@ public class Main {
         String folderPath="FileResources";
 
         OutputCSVWriter outputCSVWriter = new OutputCSVWriter(folderPath,"testOutputCSV.csv");
-        List<List<WifiPointsTimePlace>> processedFile =  outputCSVWriter.sortAndMergeFiles();
+        List<WifiPointsTimePlace> processedFile =  outputCSVWriter.sortAndMergeFiles();
         outputCSVWriter.ExportToCSV(processedFile);
+
+        HashRouters<String,WIFISample> routersOfAllFiles = outputCSVWriter.getAllRoutersOfTheFiles();
 
         Scanner stdin = new Scanner(System.in);
         char c = printMenu();

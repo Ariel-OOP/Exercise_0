@@ -37,18 +37,18 @@ public class WigleFileReader {
 	private final String WIFI_Type = "Type";
 
 	private String[] firstLine_DeviceAttributes = {};
-
 	private String[] firstLine_Titles = {};
 
+	private HashRouters<String,WIFISample> hashRouters;
 	private String fileName = "";
 
 	/**
-	 * 
 	 * @param fileName the file name that will worked on.
 	 */
 	public WigleFileReader(String fileName)
 	{
 		this.fileName = fileName;
+		hashRouters = new HashRouters<>();
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class WigleFileReader {
 
 			//Read the CSV file records starting from the second record to skip the header
 
-			CSVRecord record = (CSVRecord) csvRecords.get(1);
+			CSVRecord record = (CSVRecord) csvRecords.get(0);
 
 			//
 			WIFISample wifiSample = new WIFISample(record.get(WIFI_MAC),record.get(WIFI_SSID),record.get(WIFI_FirstSeen),
@@ -107,10 +107,11 @@ public class WigleFileReader {
 			List<WIFISample> PointsOfOneMinute = new ArrayList<>();
 
 			PointsOfOneMinute.add(wifiSample);
-			WIFISample prev = PointsOfOneMinute.get(0); 
+			WIFISample prev = PointsOfOneMinute.get(0);
+
 			int sizeOfLines = csvRecords.size();
 
-			for (int i = 2; i < sizeOfLines; i++) {
+			for (int i = 1; i < sizeOfLines; i++) {
 				record = (CSVRecord) csvRecords.get(i);
 				//Create a new WIFISample object and fill his data
 
@@ -164,9 +165,9 @@ public class WigleFileReader {
 
 		line = new WifiPointsTimePlace();
 		for(WIFISample wifiSamp : pointsOfOneMinute) {
-			if (tenOrLessPoints < 10/* && wifiSamp.getWIFI_Type().equals("WIFI")*/) {
+			if (tenOrLessPoints < 10 /*&& wifiSamp.getWIFI_Type().equals("WIFI")*/) {
+				hashRouters.addElement(wifiSamp.getWIFI_MAC(),wifiSamp);
 				line.addPoint(wifiSamp);
-				//topTenPoints.add(wifiSamp);
 				tenOrLessPoints++;
 			}
 		}
@@ -226,4 +227,9 @@ public class WigleFileReader {
 		}
 		return titleCorrect;
 	}
+
+	public HashRouters<String, WIFISample> getHashRouters() {
+		return hashRouters;
+	}
+
 }
