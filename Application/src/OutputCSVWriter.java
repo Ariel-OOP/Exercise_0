@@ -25,6 +25,8 @@ public class OutputCSVWriter {
 
 	String outputPath;
 
+	HashRouters<String,WIFISample> allRoutersOfTheFiles;
+
 	/**
 	 * 
 	 * @param files the file destination to output the file and name
@@ -36,14 +38,16 @@ public class OutputCSVWriter {
 		this.outputPath = outputPath;
 		dir = new File(files);		//	The current file
 
+		allRoutersOfTheFiles = new HashRouters<>();
+
 		//Deletes file if it exists
 		File fileToDelete = new File(outputPath+".csv");
 		fileToDelete.delete();
 
 	}
-	public List<List<WifiPointsTimePlace>> sortAndMergeFiles() {
+	public List<WifiPointsTimePlace> sortAndMergeFiles() {
 		List<WifiPointsTimePlace> allSortedPoints = new ArrayList<>(); //from all the files together
-		List<List<WifiPointsTimePlace>> processedFile = new ArrayList<>();
+		List<WifiPointsTimePlace> processedFile = new ArrayList<>();
 		WigleFileReader wigleFileReader;
 
 		for (File file : dir.listFiles()) {	
@@ -57,14 +61,17 @@ public class OutputCSVWriter {
 			else {
 				wigleFileReader = new WigleFileReader(file.getPath());
 				wigleFileReader.readCsvFile();
-				allSortedPoints = wigleFileReader.getWigleList();
-				processedFile.add(allSortedPoints);
+
+				allRoutersOfTheFiles.mergeToHash(wigleFileReader.getHashRouters());
+
+				//allSortedPoints = wigleFileReader.getWigleList();
+				processedFile.addAll(wigleFileReader.getWigleList());
 			}
 		}
 		return processedFile;
 	}
 
-	public void ExportToCSV(List<List<WifiPointsTimePlace>> fileAfterSortintAndMerging) {
+	public void ExportToCSV(List<WifiPointsTimePlace> fileAfterSortintAndMerging) {
 
 		FileWriter fileWriter = null;
 
@@ -84,10 +91,10 @@ public class OutputCSVWriter {
 			//Create CSV file header
 			csvFilePrinter.printRecord(FILE_HEADER);
 
-			for (List<WifiPointsTimePlace> file : fileAfterSortintAndMerging) {
-				for(WifiPointsTimePlace line : file)
+			//for (List<WifiPointsTimePlace> file : fileAfterSortintAndMerging) {
+				for(WifiPointsTimePlace line : fileAfterSortintAndMerging)
 					csvFilePrinter.printRecord(line.getWifiPoints());
-			}
+			//}
 
 			System.out.println("CSV file was created successfully !!!");
 
@@ -104,5 +111,9 @@ public class OutputCSVWriter {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public HashRouters<String, WIFISample> getAllRoutersOfTheFiles() {
+		return allRoutersOfTheFiles;
 	}
 }
