@@ -18,8 +18,7 @@ public class WeightedArithmeticMean {
      *
      * @return returns a WIFIWeight object which contains the Weighted Arithmetic Mean of the given mac in the constructor
      */
-    public WIFIWeight getWAM() {
-        HashRouters<String, WIFISample> hashRouters = new HashRouters();
+    public WIFIWeight getWAM( HashRouters<String,WIFISample> hashRouters) {
         //the last argument is the comparator
         List<WIFISample> kMacList = hashRouters.getKBest(mac,k, (x,y)->{
             int xi = Integer.valueOf(x.getWIFI_RSSI());
@@ -50,9 +49,9 @@ public class WeightedArithmeticMean {
             sum.setWIFI_Weight( ww.getWIFI_Weight()+sum.getWIFI_Weight() );
         }
 
-        wSum = new WIFIWeight(sum.getWIFI_MAC(),sum.getWIFI_Lat()*sum.getWIFI_Weight()
-                ,sum.getWIFI_Lon()*sum.getWIFI_Weight()
-                ,sum.getWIFI_Alt()*sum.getWIFI_Weight(),0,0.0);
+        wSum = new WIFIWeight(sum.getWIFI_MAC(),sum.getWIFI_Lat()/sum.getWIFI_Weight()
+                ,sum.getWIFI_Lon()/sum.getWIFI_Weight()
+                ,sum.getWIFI_Alt()/sum.getWIFI_Weight(),0,0.0);
 
         return wSum;
 
