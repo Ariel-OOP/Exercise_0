@@ -14,7 +14,7 @@ public class FindMyLocation {
         this.signals = signals;
     }
 
-    public getMyLocation(){
-
-    }
+//    public getMyLocation(){
+//
+//    }
 }

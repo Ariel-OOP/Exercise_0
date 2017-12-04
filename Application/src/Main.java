@@ -16,6 +16,11 @@ public class Main {
 
         HashRouters<String,WIFISample> routersOfAllFiles = outputCSVWriter.getAllRoutersOfTheFiles();
 
+
+        WeightedArithmeticMean weightedArithmeticMean = new WeightedArithmeticMean("00:22:b0:75:7d:eb");
+        weightedArithmeticMean.getWAM();
+
+
         Scanner stdin = new Scanner(System.in);
         char c = printMenu();
         int inputChoice = Integer.parseInt(c+"");

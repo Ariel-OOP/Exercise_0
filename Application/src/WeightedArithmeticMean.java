@@ -19,13 +19,17 @@ public class WeightedArithmeticMean {
      * @return returns a WIFIWeight object which contains the Weighted Arithmetic Mean of the given mac in the constructor
      */
     public WIFIWeight getWAM() {
-        HashRouters<String, WIFISample> HashRouters = new HashRouters();
-        List<WIFISample> kMacList = getKBest(mac,k);
-        //TODO: change WIFISamples to doubles,int etc....
+        HashRouters<String, WIFISample> hashRouters = new HashRouters();
+        //the last argument is the comparator
+        List<WIFISample> kMacList = hashRouters.getKBest(mac,k, (x,y)->{
+            int xi = Integer.valueOf(x.getWIFI_RSSI());
+            int yi = Integer.valueOf(y.getWIFI_RSSI());
+            return yi-xi;
+        });
         List<WIFIWeight> wifiWeights = new ArrayList<WIFIWeight>();
         //final sum
         WIFIWeight sum,wSum;
-
+        int countUntilK=0;
         for(WIFISample ws: kMacList){
             double weightOfOne = Double.parseDouble(ws.getWIFI_RSSI());
             weightOfOne= 1/(weightOfOne*weightOfOne);
@@ -56,6 +60,7 @@ public class WeightedArithmeticMean {
     private double calcWeight(String str,Double weight){
         return  Double.parseDouble(str)*weight ;
     }
+
 
 }
 
