@@ -154,7 +154,7 @@ public class Filter {
             case NOFILTER: return true;
             case LOCATION:
                 //switched the order of the coordinates
-                return LineFilters.distFrom(locationObject[1],locationObject[0],Double.parseDouble(lineProperties[2]),Double.parseDouble(lineProperties[3]),locationObject[2]);
+                return LineFilters.distFrom(locationObject[0],locationObject[1],Double.parseDouble(lineProperties[2]),Double.parseDouble(lineProperties[3]),locationObject[2]);
             case TIME:
                 String strDateFromFile = "";
                 String dateFormatFile = "dd/MM/yyyy hh:mm";
