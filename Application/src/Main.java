@@ -18,7 +18,7 @@ public class Main {
 
 
         WeightedArithmeticMean weightedArithmeticMean = new WeightedArithmeticMean("00:22:b0:75:7d:eb");
-        weightedArithmeticMean.getWAM();
+        WIFIWeight ww =weightedArithmeticMean.getWAM(routersOfAllFiles);
 
 
         Scanner stdin = new Scanner(System.in);
