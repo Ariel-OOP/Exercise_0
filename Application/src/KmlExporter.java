@@ -37,7 +37,6 @@ public class KmlExporter {
         document = kml.createAndSetDocument();
 
 
-        //TODO added
         IconStyle iconStyle =new IconStyle();
         Icon icon = new Icon();
         icon.setHref("http://maps.google.com/mapfiles/kml/paddle/grn-circle.png");
@@ -60,9 +59,6 @@ public class KmlExporter {
         iconStyleYellow.setIcon(iconYellow);
         document.createAndAddStyle().withId("yellow").setIconStyle(iconStyleYellow);
 
-
-
-        //TODO see if this helps kml header
 
         BufferedReader br = null;
         String line;
