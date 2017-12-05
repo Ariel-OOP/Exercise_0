@@ -7,24 +7,33 @@ import java.util.List;
 
 public class WeightedArithmeticMean {
 
-    private String mac;
-    private final int k=3;
+    private HashRouters<String,WIFISample> hashRouters;
+    private final int k=3; // change this to make getWAM more or less accurate.
 
-    public WeightedArithmeticMean(String mac) {
-        this.mac = mac;
+    /**
+     *
+     * @param hashRouters is the Hable Table of all the WIIFI points from all the files.
+     */
+    public WeightedArithmeticMean(HashRouters<String,WIFISample> hashRouters) {
+        this.hashRouters = hashRouters;
     }
 
     /**
      *
-     * @return returns a WIFIWeight object which contains the Weighted Arithmetic Mean of the given mac in the constructor
+     * @param mac the mac to search for from within th given file in the constructor.
+     * @return returns a WIFIWeight object which contains the Weighted Arithmetic Mean of the given Hash Table in the constructor
      */
-    public WIFIWeight getWAM( HashRouters<String,WIFISample> hashRouters) {
+    public WIFIWeight getWAM(String mac) {
         //the last argument is the comparator
         List<WIFISample> kMacList = hashRouters.getKBest(mac,k, (x,y)->{
             int xi = Integer.valueOf(x.getWIFI_RSSI());
             int yi = Integer.valueOf(y.getWIFI_RSSI());
             return yi-xi;
         });
+
+        if (kMacList==null)
+            return null;
+
         List<WIFIWeight> wifiWeights = new ArrayList<WIFIWeight>();
         //final sum
         WIFIWeight sum,wSum;

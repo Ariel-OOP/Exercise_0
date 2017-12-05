@@ -17,8 +17,8 @@ public class Main {
         HashRouters<String,WIFISample> routersOfAllFiles = outputCSVWriter.getAllRoutersOfTheFiles();
 
 
-        WeightedArithmeticMean weightedArithmeticMean = new WeightedArithmeticMean("00:22:b0:75:7d:eb");
-        WIFIWeight ww =weightedArithmeticMean.getWAM(routersOfAllFiles);
+        WeightedArithmeticMean weightedArithmeticMean = new WeightedArithmeticMean(routersOfAllFiles);
+        WIFIWeight ww =weightedArithmeticMean.getWAM("00:22:b0:75:7d:eb");
 
 
         Scanner stdin = new Scanner(System.in);
