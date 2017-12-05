@@ -21,10 +21,14 @@ public class WeightedArithmeticMeanTest {
         HashRouters<String,WIFISample> routersOfAllFiles = outputCSVWriter.getAllRoutersOfTheFiles();
 
 
-        WeightedArithmeticMean weightedArithmeticMean = new WeightedArithmeticMean("00:22:b0:75:7d:eb");
-        WIFIWeight ww =weightedArithmeticMean.getWAM(routersOfAllFiles);
+        WeightedArithmeticMean weightedArithmeticMean = new WeightedArithmeticMean(routersOfAllFiles);
+        WIFIWeight ww =weightedArithmeticMean.getWAM("00:22:b0:75:7d:eb");
         assertEquals(ww.getWIFI_Lat(), 32.16800543,DELTA);
         assertEquals(ww.getWIFI_Lon(), 34.80451717,DELTA);
         assertEquals(ww.getWIFI_Alt(),  33.01544196,DELTA);
+
+        WIFIWeight ww2 =weightedArithmeticMean.getWAM("00:00:00:00:00:00");
+        assertEquals(ww2,null);
+
     }
 }
