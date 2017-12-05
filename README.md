@@ -1,3 +1,6 @@
+# This repository has moved to https://github.com/Ariel-OOP/WifiApp
+# Go there to see the continuation of this project with added features and a GUI.
+
 # General Description <br />
 This project is written in java. The program is divided into two parts:<br />
 <br />
