@@ -1,5 +1,5 @@
 # This repository has moved to https://github.com/Ariel-OOP/WebWifiApp for Exercises 3 and onward.
-# This repository has moved to https://github.com/Ariel-OOP/WifiApp for Exercises 2.
+# This repository has moved to https://github.com/Ariel-OOP/WifiApp for Exercise 2.
 ## Go there to see the continuation of this project with added features and a GUI.
 
 # General Description <br />
